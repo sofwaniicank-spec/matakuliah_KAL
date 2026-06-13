@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; My sample book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; My sample book</title>
   
   
   
@@ -56,9 +57,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Persamaan_Linear_Matriks';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="MENCARI A invers matrix" href="invers-matriks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -120,8 +122,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -321,7 +321,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPersamaan_Linear_Matriks.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -333,6 +333,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Persamaan_Linear_Matriks.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -374,7 +422,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -385,11 +435,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -399,13 +457,171 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <p>{
+“cells”: [
+{
+“cell_type”: “markdown”,
+“id”: “304146b5”,
+“metadata”: {</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  },
+  &quot;source&quot;: [
+    &quot;# SISTEM PERSAMAAN LINEAR MATRIK\n&quot;,
+    &quot;Nama : MOH ZIYAD AFANDI\n&quot;,
+    &quot;\n&quot;,
+    &quot;NIM : 250411100162\n&quot;,
+    &quot;\n&quot;,
+    &quot;Kelas : 2D\n&quot;,
+    &quot;\n&quot;,
+    &quot;Mata Kuliah : KOMPUTASI ALJABAR LINIER\n&quot;,
+    &quot;\n&quot;,
+    &quot;---\n&quot;,
+    &quot;\n&quot;,
+    &quot;membuat contoh penyelesaian sistem persamaan linier tiga variabel dan empat variabel dengan menggunakan eliminasi gaussian, cara mencarinya atau prosesnya bisa menggunakan tools bapak tadi nanti baru ke jupyter notebook\n&quot;,
+    &quot;\n&quot;,
+    &quot;## 📘 Eliminasi Gaussian\n&quot;,
+    &quot;\n&quot;,
+    &quot;### Penyelesaian Sistem Persamaan Linier 3 dan 4 Variabel\n&quot;,
+    &quot;\n&quot;,
+    &quot;(Menggunakan operasi baris elementer add_multiple_of_row)   \n&quot;,
+    &quot;\n&quot;,
+    &quot;---\n&quot;,
+    &quot;\n&quot;,
+    &quot;## A. Sistem Persamaan Linier Tiga Variabel\n&quot;,
+    &quot;\n&quot;,
+    &quot;## 1. Sistem Persamaan\n&quot;,
+    &quot;\n&quot;,
+    &quot;$$\\begin{cases} \n&quot;,
+    &quot;x + y + z = 6 \\\\ \n&quot;,
+    &quot;2x + y - z = 3 \\\\ \n&quot;,
+    &quot;x - y + 2z = 7 \n&quot;,
+    &quot;\\end{cases}$$\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;## 2. Matriks Augmented\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](gambar1.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;### 3. Eliminasi Gauss\n&quot;,
+    &quot;\n&quot;,
+    &quot;#### Langkah 1\n&quot;,
+    &quot;\n&quot;,
+    &quot;Menghilangkan elemen di bawah pivot pertama (kolom pertama):\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](gambar2.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;Hasil:$$\\left[\n&quot;,
+    &quot;\\begin{array}{ccc|c}\n&quot;,
+    &quot;1 &amp; 1 &amp; 1 &amp; 6 \\\\\n&quot;,
+    &quot;0 &amp; -1 &amp; -3 &amp; -9 \\\\\n&quot;,
+    &quot;0 &amp; -2 &amp; 1 &amp; 1\n&quot;,
+    &quot;\\end{array}\n&quot;,
+    &quot;\\right]$$\n&quot;,
+    &quot;\n&quot;,
+    &quot;#### Langkah 2\n&quot;,
+    &quot;\n&quot;,
+    &quot;Menghilangkan elemen di bawah pivot kedua:\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](gambar3.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;Hasil: $\\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 6 \\\\ 0 &amp; -1 &amp; -3 &amp; -9 \\\\ 0 &amp; 0 &amp; 7 &amp; 19 \\end{bmatrix}$\n&quot;,
+    &quot;\n&quot;,
+    &quot;---\n&quot;,
+    &quot;\n&quot;,
+    &quot;### 4. Substitusi Balik\n&quot;,
+    &quot;\n&quot;,
+    &quot;Dari matriks segitiga atas diperoleh:\n&quot;,
+    &quot;\n&quot;,
+    &quot;$$\\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix} = \\begin{bmatrix} \\frac{17}{7} \\\\ \\frac{6}{7} \\\\ \\frac{19}{7} \\end{bmatrix}$$\n&quot;,
+    &quot;\n&quot;,
+    &quot;## B. Sistem Persamaan Linier Empat Variabel\n&quot;,
+    &quot;\n&quot;,
+    &quot;### 1. Sistem Persamaan\n&quot;,
+    &quot;\n&quot;,
+    &quot;$$\\begin{cases} \n&quot;,
+    &quot;x + y + z + w = 10 \\\\ \n&quot;,
+    &quot;2x + y + z + w = 13 \\\\ \n&quot;,
+    &quot;x + 2y + z + w = 14 \\\\ \n&quot;,
+    &quot;x + y + 2z + w = 15 \n&quot;,
+    &quot;\\end{cases}$$\n&quot;,
+    &quot;\n&quot;,
+    &quot;### 2. Matriks Augmented\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](gambar4.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;### 3. Eliminasi Gauss\n&quot;,
+    &quot;\n&quot;,
+    &quot;#### Langkah 1\n&quot;,
+    &quot;\n&quot;,
+    &quot;Menghilangkan elemen pada kolom pertama:\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](gambar5.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;Hasil: $\\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 10 \\\\ 0 &amp; -1 &amp; -1 &amp; -1 &amp; -7 \\\\ 0 &amp; 1 &amp; 0 &amp; 0 &amp; 4 \\\\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 5 \\end{bmatrix}$\n&quot;,
+    &quot;\n&quot;,
+    &quot;#### Langkah 2\n&quot;,
+    &quot;\n&quot;,
+    &quot;Menghilangkan elemen pada kolom kedua:\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](grafik1.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;Hasil: $\\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 10 \\\\ 0 &amp; -1 &amp; -1 &amp; -1 &amp; -7 \\\\ 0 &amp; 0 &amp; -1 &amp; -1 &amp; -3 \\\\ 0 &amp; 0 &amp; 1 &amp; 0 &amp; 5 \\end{bmatrix}$\n&quot;,
+    &quot;\n&quot;,
+    &quot;#### Langkah 3\n&quot;,
+    &quot;\n&quot;,
+    &quot;Menghilangkan elemen pada kolom ketiga:\n&quot;,
+    &quot;\n&quot;,
+    &quot;![Grafik SPL](gambar7.png)\n&quot;,
+    &quot;\n&quot;,
+    &quot;Hasil: $\\begin{bmatrix} 1 &amp; 1 &amp; 1 &amp; 1 &amp; 10 \\\\ 0 &amp; -1 &amp; -1 &amp; -1 &amp; -7 \\\\ 0 &amp; 0 &amp; -1 &amp; -1 &amp; -3 \\\\ 0 &amp; 0 &amp; 0 &amp; -1 &amp; 2 \\end{bmatrix}$\n&quot;,
+    &quot;\n&quot;,
+    &quot;---\n&quot;,
+    &quot;\n&quot;,
+    &quot;### 4. Substitusi Balik\n&quot;,
+    &quot;\n&quot;,
+    &quot;* ($w = -2$)\n&quot;,
+    &quot;* ($z = 5$)\n&quot;,
+    &quot;* ($y = 4$)\n&quot;,
+    &quot;* ($x = 3$)\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;,
+    &quot;\n&quot;
+  ]
+}
+</pre></div>
 </div>
+<p>],
+“metadata”: {
+“language_info”: {
+“name”: “python”
+}
+},
+“nbformat”: 4,
+“nbformat_minor”: 5
+}</p>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -417,12 +633,36 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="invers-matriks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MENCARI A invers matrix</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
