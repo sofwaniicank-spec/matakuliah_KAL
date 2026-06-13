@@ -184,18 +184,34 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Materi 1</a></li>
 
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="materi2.html">Materi 2</a></li>
 
 
 
 
 <li class="toctree-l1"><a class="reference internal" href="invers-matriks.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materi3.html">Materi 3</a></li>
+
+
+
+
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="materi4.html">Materi 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="materi5.html">Materi 5</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Tugas_Komputasi_Determinan_Menggunakan_Operasi_Baris_Elementer_%28OBE%29.html">Tugas Komputasi Determinan Menggunakan Operasi Baris Elementer (OBE)</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Perhitungan_Determinan_Ekspansi_Baris_dan_Invers_Matriks_Adjoin.html">Tugas Kuliah: Perhitungan Determinan Ekspansi Baris dan Invers Matriks Adjoin</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="materi6.html">Materi 6</a></li>
 
 
 
@@ -216,14 +232,12 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="materi6.html">Materi 6</a></li>
-
-
-
 <li class="toctree-l1"><a class="reference internal" href="materi7.html">Materi 7</a></li>
 
 
 
+
+<li class="toctree-l1"><a class="reference internal" href="materi10.html">materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD</a></li>
 
 </ul>
 
@@ -420,18 +434,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-a-invers-matrix">MENCARI A invers matrix</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invers-matriks-dengan-metode-gauss-jordan">Invers Matriks dengan Metode Gauss-Jordan</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diketahui">Diketahui</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-matriks-augmented">Langkah 1: Matriks Augmented</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-eliminasi-kolom-1">Langkah 2: Eliminasi Kolom 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir">Hasil Akhir</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bentuk-pecahan">Bentuk Pecahan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 1</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-apa-yang-dimaksud-dengan-aljabar-linear">A. Apa yang Dimaksud dengan Aljabar Linear?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-aljabar-linear">Definisi Aljabar Linear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-kasus-representasi-geometris-geogebra">Contoh Kasus (Representasi Geometris GeoGebra)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar">gambar</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bukti-komputasi-numerik-menggunakan-python-numpy">Bukti Komputasi Numerik Menggunakan Python (NumPy)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-python">code python</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-koefisien-a">Matriks Koefisien A</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vektor-hasil-b">Vektor Hasil B</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyelesaikan-persamaan-ax-b-untuk-mendapatkan-koordinat-x-y">Menyelesaikan persamaan Ax = B untuk mendapatkan koordinat (x, y)</a></li>
 </ul>
 
             </nav>
@@ -446,81 +464,65 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="materi-1">
 <h1>Materi 1<a class="headerlink" href="#materi-1" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="mencari-a-invers-matrix">
-<h1>MENCARI A invers matrix<a class="headerlink" href="#mencari-a-invers-matrix" title="Link to this heading">#</a></h1>
-<section id="invers-matriks-dengan-metode-gauss-jordan">
-<h2>Invers Matriks dengan Metode Gauss-Jordan<a class="headerlink" href="#invers-matriks-dengan-metode-gauss-jordan" title="Link to this heading">#</a></h2>
-<section id="diketahui">
-<h3>Diketahui<a class="headerlink" href="#diketahui" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-A = \begin{bmatrix}
-1 &amp; 1 &amp; 1 &amp; 1 \\
-2 &amp; -1 &amp; 1 &amp; -1 \\
-1 &amp; 2 &amp; -1 &amp; 1 \\
-3 &amp; -1 &amp; 2 &amp; 1
-\end{bmatrix}
-\end{split}\]</div>
+<section id="a-apa-yang-dimaksud-dengan-aljabar-linear">
+<h2>A. Apa yang Dimaksud dengan Aljabar Linear?<a class="headerlink" href="#a-apa-yang-dimaksud-dengan-aljabar-linear" title="Link to this heading">#</a></h2>
+<p>Selamat datang di materi awal untuk kuliah Komputasi Aljabar Linear. Di halaman ini, kita bakal bahas konsep paling mendasar dari aljabar linear, melihat bentuknya secara visual lewat grafik, dan membuktikannya langsung pakai program Python.</p>
 </section>
 <hr class="docutils" />
-<section id="langkah-1-matriks-augmented">
-<h3>Langkah 1: Matriks Augmented<a class="headerlink" href="#langkah-1-matriks-augmented" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-[A \mid I] = \begin{bmatrix}
-1 &amp; 1 &amp; 1 &amp; 1 &amp; \mid &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-2 &amp; -1 &amp; 1 &amp; -1 &amp; \mid &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
-1 &amp; 2 &amp; -1 &amp; 1 &amp; \mid &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
-3 &amp; -1 &amp; 2 &amp; 1 &amp; \mid &amp; 0 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\end{split}\]</div>
+<section id="definisi-aljabar-linear">
+<h2>Definisi Aljabar Linear<a class="headerlink" href="#definisi-aljabar-linear" title="Link to this heading">#</a></h2>
+<p>Aljabar linear sebenarnya adalah cabang matematika yang fokus mempelajari matriks, vektor, ruang vektor, sistem persamaan linear, beserta transformasi linear yang menghubungkannya. Sederhananya, bidang ini berfokus pada hubungan garis lurus dan struktur matematika yang teratur. Di era sekarang, konsep ini jadi fondasi yang sangat penting di dunia sains, teknik, ilmu komputer, sampai pengembangan <em>machine learning</em>.</p>
 </section>
 <hr class="docutils" />
-<section id="langkah-2-eliminasi-kolom-1">
-<h3>Langkah 2: Eliminasi Kolom 1<a class="headerlink" href="#langkah-2-eliminasi-kolom-1" title="Link to this heading">#</a></h3>
-<p>Hasil:</p>
+<section id="contoh-kasus-representasi-geometris-geogebra">
+<h2>Contoh Kasus (Representasi Geometris GeoGebra)<a class="headerlink" href="#contoh-kasus-representasi-geometris-geogebra" title="Link to this heading">#</a></h2>
+<p>Misalkan kita punya dua buah persamaan garis linear seperti ini:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{bmatrix}
-1 &amp; 1 &amp; 1 &amp; 1 &amp; \mid &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; -3 &amp; -1 &amp; -3 &amp; \mid &amp; -2 &amp; 1 &amp; 0 &amp; 0 \\
-0 &amp; 1 &amp; -2 &amp; 0 &amp; \mid &amp; -1 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; -4 &amp; -1 &amp; -2 &amp; \mid &amp; -3 &amp; 0 &amp; 0 &amp; 1
-\end{bmatrix}
-\end{split}\]</div>
+\[g_1 : y = 3x + 1\]</div>
+<div class="math notranslate nohighlight">
+\[g_2 : y = -2x + 0\]</div>
+<p>Supaya bisa diolah ke dalam format standar Sistem Persamaan Linear (<span class="math notranslate nohighlight">\(Ax = B\)</span>), kita pindahkan variabel <span class="math notranslate nohighlight">\(x\)</span> ke ruas kiri. Hasilnya menjadi:</p>
+<div class="math notranslate nohighlight">
+\[-3x + y = 1\]</div>
+<div class="math notranslate nohighlight">
+\[2x + y = 0\]</div>
+<p>Kalau diubah ke dalam struktur matriks dan vektor, bentuknya bakal kelihatan seperti ini:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} -3 &amp; 1 \\ 2 &amp; 1 \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\end{split}\]</div>
+<p>Ketika kedua persamaan garis di atas kita masukkan ke aplikasi GeoGebra, kita bakal melihat visualisasi dua garis lurus yang saling bersilangan: Garis <span class="math notranslate nohighlight">\(g_1\)</span> menggambarkan fungsi linear dari persamaan <span class="math notranslate nohighlight">\(y = 3x + 1\)</span>. Garis <span class="math notranslate nohighlight">\(g_2\)</span> menggambarkan fungsi linear dari persamaan <span class="math notranslate nohighlight">\(y = -2x + 0\)</span>.</p>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gambar">
+<h1>gambar<a class="headerlink" href="#gambar" title="Link to this heading">#</a></h1>
+<p><img alt="alt text" src="_images/image-19.png" /></p>
+<p>Titik Perpotongan: Dua garis tersebut saling memotong tepat di satu titik koordinat tunggal. Dalam aljabar linear, lokasi pertemuan atau titik silang inilah yang menjadi jawaban atau solusi utama dari sistem persamaan tersebut.</p>
 <hr class="docutils" />
-<section id="hasil-akhir">
-<h3>Hasil Akhir<a class="headerlink" href="#hasil-akhir" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[
-[I \mid A^{-1}]
-\]</div>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-A^{-1} = \frac{1}{6} \begin{bmatrix}
-1 &amp; 1 &amp; 1 &amp; -1 \\
-1 &amp; -1 &amp; 1 &amp; 1 \\
-1 &amp; 1 &amp; -1 &amp; 1 \\
-1 &amp; -1 &amp; -1 &amp; -1
-\end{bmatrix}
-\end{split}\]</div>
-</section>
-<hr class="docutils" />
-<section id="bentuk-pecahan">
-<h3>Bentuk Pecahan<a class="headerlink" href="#bentuk-pecahan" title="Link to this heading">#</a></h3>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-A^{-1} = \begin{bmatrix}
-\frac{1}{6} &amp; \frac{1}{6} &amp; \frac{1}{6} &amp; -\frac{1}{6} \\
-\frac{1}{6} &amp; -\frac{1}{6} &amp; \frac{1}{6} &amp; \frac{1}{6} \\
-\frac{1}{6} &amp; \frac{1}{6} &amp; -\frac{1}{6} &amp; \frac{1}{6} \\
-\frac{1}{6} &amp; -\frac{1}{6} &amp; -\frac{1}{6} &amp; -\frac{1}{6}
-\end{bmatrix}
-\end{split}\]</div>
+<section id="bukti-komputasi-numerik-menggunakan-python-numpy">
+<h2>Bukti Komputasi Numerik Menggunakan Python (NumPy)<a class="headerlink" href="#bukti-komputasi-numerik-menggunakan-python-numpy" title="Link to this heading">#</a></h2>
+<p>Sekarang kita buktikan secara pasti berapa koordinat titik potong dari grafik GeoGebra tadi menggunakan library NumPy di Python. Kode ini bakal langsung mencari nilai koordinat <span class="math notranslate nohighlight">\(x\)</span> dan <span class="math notranslate nohighlight">\(y\)</span> yang pas:</p>
+<section id="code-python">
+<h3>code python<a class="headerlink" href="#code-python" title="Link to this heading">#</a></h3>
+<p>import numpy as np</p>
 </section>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="matriks-koefisien-a">
+<h1>Matriks Koefisien A<a class="headerlink" href="#matriks-koefisien-a" title="Link to this heading">#</a></h1>
+<p>A = np.array([[-3, 1],
+[2, 1]])</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="vektor-hasil-b">
+<h1>Vektor Hasil B<a class="headerlink" href="#vektor-hasil-b" title="Link to this heading">#</a></h1>
+<p>B = np.array([1, 6])</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="menyelesaikan-persamaan-ax-b-untuk-mendapatkan-koordinat-x-y">
+<h1>Menyelesaikan persamaan Ax = B untuk mendapatkan koordinat (x, y)<a class="headerlink" href="#menyelesaikan-persamaan-ax-b-untuk-mendapatkan-koordinat-x-y" title="Link to this heading">#</a></h1>
+<p>solusi = np.linalg.solve(A, B)</p>
+<p>print(”— BUKTI OUTPUT PYTHON —“)
+print(“Titik potong berhasil ditemukan:”)
+print(f”Nilai X = {solusi[0]:.1f}”)
+print(f”Nilai Y = {solusi[1]:.1f}”)
+print(f”Koordinat Solusi: ({solusi[0]:.1f}, {solusi[1]:.1f})”)</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -587,18 +589,22 @@ A^{-1} = \begin{bmatrix}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 1</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mencari-a-invers-matrix">MENCARI A invers matrix</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invers-matriks-dengan-metode-gauss-jordan">Invers Matriks dengan Metode Gauss-Jordan</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diketahui">Diketahui</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-matriks-augmented">Langkah 1: Matriks Augmented</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-eliminasi-kolom-1">Langkah 2: Eliminasi Kolom 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akhir">Hasil Akhir</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bentuk-pecahan">Bentuk Pecahan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 1</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-apa-yang-dimaksud-dengan-aljabar-linear">A. Apa yang Dimaksud dengan Aljabar Linear?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definisi-aljabar-linear">Definisi Aljabar Linear</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-kasus-representasi-geometris-geogebra">Contoh Kasus (Representasi Geometris GeoGebra)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gambar">gambar</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bukti-komputasi-numerik-menggunakan-python-numpy">Bukti Komputasi Numerik Menggunakan Python (NumPy)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-python">code python</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-koefisien-a">Matriks Koefisien A</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#vektor-hasil-b">Vektor Hasil B</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menyelesaikan-persamaan-ax-b-untuk-mendapatkan-koordinat-x-y">Menyelesaikan persamaan Ax = B untuk mendapatkan koordinat (x, y)</a></li>
 </ul>
 
   </nav></div>
