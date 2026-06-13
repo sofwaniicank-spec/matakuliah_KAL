@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>tugas transformasi matrik &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas_transformasi_matrik';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Materi 7" href="materi7.html" />
+    <link rel="prev" title="Tugas Kuliah: Perhitungan Determinan Ekspansi Baris dan Invers Matriks Adjoin" href="Perhitungan_Determinan_Ekspansi_Baris_dan_Invers_Matriks_Adjoin.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpeg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book shofwani
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="materi1.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materi2.html">Materi 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invers-matriks.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materi4.html">Materi 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas_Komputasi_Determinan_Menggunakan_Operasi_Baris_Elementer_%28OBE%29.html">Tugas Komputasi Determinan Menggunakan Operasi Baris Elementer (OBE)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Perhitungan_Determinan_Ekspansi_Baris_dan_Invers_Matriks_Adjoin.html">Tugas Kuliah: Perhitungan Determinan Ekspansi Baris dan Invers Matriks Adjoin</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">tugas transformasi matrik</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="materi7.html">Materi 7</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas_transformasi_matrik.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas_transformasi_matrik.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>tugas transformasi matrik</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">tugas transformasi matrik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-program-pertama">kode program pertama</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-vektor-pergeseran-geser-2-ke-kanan-sesuai-gambar">1. Definisikan Vektor Pergeseran (Geser 2 ke kanan sesuai gambar)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-grup-titik-biru-kiri-a-b-c-d">2. Definisikan Grup Titik Biru Kiri (A, B, C, D)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#koordinat-x-dari-4-sampai-3">Koordinat x dari -4 sampai -3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-grup-titik-biru-kanan-e-g-f-h">3. Definisikan Grup Titik Biru Kanan (E, G, F, H)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#koordinat-x-dari-3-sampai-4">Koordinat x dari 3 sampai 4</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-semua-titik-merah-secara-otomatis">4. Hitung semua titik merah secara otomatis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-hasil">Output Hasil</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-program-ke-2">kode program ke 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksekusi">— EKSEKUSI —</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#input-awal-yang-ingin-anda-coba-ubah-ubah">Input awal yang ingin Anda coba ubah-ubah:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-teknis-mekanisme-transformasi-matriks-translasi">Analisis Teknis Mekanisme Transformasi Matriks (Translasi)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pergeseran-koordinat-secara-akurat">1. Proses Pergeseran Koordinat Secara Akurat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-matriks-penggerak-homogen">2. Mekanisme Matriks Penggerak Homogen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-teoretis">3. Kesimpulan Teoretis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-teknis-komputasi-transformasi-matriks">Penjelasan Teknis Komputasi Transformasi Matriks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formulasi-matematika-translasi-2d">1. Formulasi Matematika Translasi 2D</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-perhitungan-paralel-berbasis-numpy-broadcasting">2. Algoritma Perhitungan Paralel Berbasis NumPy <em>Broadcasting</em></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-logika-fungsi-visualisasi-transformasi-otomatis">3. Alur Logika Fungsi <code class="docutils literal notranslate"><span class="pre">visualisasi_transformasi_otomatis</span></code></a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-transformasi-matrik">
+<h1>tugas transformasi matrik<a class="headerlink" href="#tugas-transformasi-matrik" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="kode-program-pertama">
+<h1>kode program pertama<a class="headerlink" href="#kode-program-pertama" title="Link to this heading">#</a></h1>
+<p>import numpy as np</p>
+<p>def transformasi_grup(matriks_titik, vektor_translasi):
+“””
+Menghitung pergeseran untuk banyak titik sekaligus.
+“””
+# NumPy akan otomatis menambahkan vektor ke setiap baris matriks
+return matriks_titik + vektor_translasi</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="definisikan-vektor-pergeseran-geser-2-ke-kanan-sesuai-gambar">
+<h1>1. Definisikan Vektor Pergeseran (Geser 2 ke kanan sesuai gambar)<a class="headerlink" href="#definisikan-vektor-pergeseran-geser-2-ke-kanan-sesuai-gambar" title="Link to this heading">#</a></h1>
+<p>vektor_T = np.array([2, 0])</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="definisikan-grup-titik-biru-kiri-a-b-c-d">
+<h1>2. Definisikan Grup Titik Biru Kiri (A, B, C, D)<a class="headerlink" href="#definisikan-grup-titik-biru-kiri-a-b-c-d" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="koordinat-x-dari-4-sampai-3">
+<h1>Koordinat x dari -4 sampai -3<a class="headerlink" href="#koordinat-x-dari-4-sampai-3" title="Link to this heading">#</a></h1>
+<p>titik_biru_kiri = np.array([
+[-4, 3], # A
+[-3, 3], # B
+[-4, 2], # C
+[-3, 2]  # D
+])</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="definisikan-grup-titik-biru-kanan-e-g-f-h">
+<h1>3. Definisikan Grup Titik Biru Kanan (E, G, F, H)<a class="headerlink" href="#definisikan-grup-titik-biru-kanan-e-g-f-h" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="koordinat-x-dari-3-sampai-4">
+<h1>Koordinat x dari 3 sampai 4<a class="headerlink" href="#koordinat-x-dari-3-sampai-4" title="Link to this heading">#</a></h1>
+<p>titik_biru_kanan = np.array([
+[3, 3], # E
+[4, 3], # G
+[3, 2], # F
+[4, 2]  # H
+])</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="hitung-semua-titik-merah-secara-otomatis">
+<h1>4. Hitung semua titik merah secara otomatis<a class="headerlink" href="#hitung-semua-titik-merah-secara-otomatis" title="Link to this heading">#</a></h1>
+<p>titik_merah_kiri = transformasi_grup(titik_biru_kiri, vektor_T)
+titik_merah_kanan = transformasi_grup(titik_biru_kanan, vektor_T)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="output-hasil">
+<h1>Output Hasil<a class="headerlink" href="#output-hasil" title="Link to this heading">#</a></h1>
+<p>print(”— HASIL TRANSFORMASI —“)
+print(f”Titik Biru Kiri (-4 s/d -3) menjadi Merah Kiri:\n{titik_merah_kiri}”)
+print(f”\nTitik Biru Kanan (3 s/d 4) menjadi Merah Kanan:\n{titik_merah_kanan}”)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="kode-program-ke-2">
+<h1>kode program ke 2<a class="headerlink" href="#kode-program-ke-2" title="Link to this heading">#</a></h1>
+<p>import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>def visualisasi_transformasi_otomatis(titik_kiri_input, vektor_geser):
+# 1. Konversi input ke NumPy Array untuk operasi matriks
+P_kiri = np.array(titik_kiri_input)
+T = np.array(vektor_geser)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># 2. Definisikan Titik Biru Kanan (Referensinya)
+P_kanan = np.array([[3, 3], [4, 3], [3, 2], [4, 2]])
+
+# 3. Hitung Titik Merah secara OTOMATIS (P&#39; = P + T)
+P_merah_kiri = P_kiri + T
+P_merah_kanan = P_kanan + T
+
+# 4. Proses Menggambar dengan Matplotlib
+plt.figure(figsize=(10, 6))
+
+# Menggambar Titik
+plt.scatter(P_kiri[:,0], P_kiri[:,1], color=&#39;blue&#39;, s=100, label=&#39;Titik Biru (Asal)&#39;, edgecolors=&#39;black&#39;, zorder=5)
+plt.scatter(P_kanan[:,0], P_kanan[:,1], color=&#39;blue&#39;, s=100, edgecolors=&#39;black&#39;, zorder=5)
+plt.scatter(P_merah_kiri[:,0], P_merah_kiri[:,1], color=&#39;red&#39;, s=100, label=&#39;Titik Merah (Hasil)&#39;, edgecolors=&#39;black&#39;, zorder=5)
+plt.scatter(P_merah_kanan[:,0], P_merah_kanan[:,1], color=&#39;red&#39;, s=100, edgecolors=&#39;black&#39;, zorder=5)
+
+# Pengaturan Canvas
+plt.axhline(0, color=&#39;black&#39;, linewidth=1)
+plt.axvline(0, color=&#39;black&#39;, linewidth=1)
+plt.grid(True, which=&#39;both&#39;, linestyle=&#39;--&#39;, linewidth=0.5)
+plt.xlim(-6, 8)
+plt.ylim(-1, 5)
+plt.legend()
+plt.title(f&quot;Transformasi Matriks Dinamis (Geser x={vektor_geser[0]})&quot;)
+
+# --- BAGIAN PERBAIKAN: MEMAKSA SEMUA ANGKA MUNCUL ---
+# Tentukan jangkauan yang Anda inginkan
+xticks = np.arange(-6, 9, 1) # Membuat urutan dari -6 sampai 8 dengan jarak 1
+# Instruksi spesifik ke Matplotlib untuk sumbu X
+plt.xticks(xticks)
+# ----------------------------------------------------
+
+plt.show()
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="eksekusi">
+<h1>— EKSEKUSI —<a class="headerlink" href="#eksekusi" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="input-awal-yang-ingin-anda-coba-ubah-ubah">
+<h1>Input awal yang ingin Anda coba ubah-ubah:<a class="headerlink" href="#input-awal-yang-ingin-anda-coba-ubah-ubah" title="Link to this heading">#</a></h1>
+<p>titik_awal = [[-4, 3], [-3, 3], [-4, 2], [-3, 2]]
+pergeseran = [2, 0] # Geser x = 2</p>
+<p>visualisasi_transformasi_otomatis(titik_awal, pergeseran)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analisis-teknis-mekanisme-transformasi-matriks-translasi">
+<h1>Analisis Teknis Mekanisme Transformasi Matriks (Translasi)<a class="headerlink" href="#analisis-teknis-mekanisme-transformasi-matriks-translasi" title="Link to this heading">#</a></h1>
+<p>Di bawah ini adalah penjelasan mendalam mengenai logika matematika dan komputasi di balik mekanisme pergeseran objek yang terjadi pada program simulator:</p>
+<section id="proses-pergeseran-koordinat-secara-akurat">
+<h2>1. Proses Pergeseran Koordinat Secara Akurat<a class="headerlink" href="#proses-pergeseran-koordinat-secara-akurat" title="Link to this heading">#</a></h2>
+<p>Secara teknis, perpindahan objek yang terjadi di dalam grafik bukan sekadar perubahan visual di layar monitor, melainkan hasil dari operasi translasi pada ruang vektor dua dimensi (2D). Setiap titik asal yang kita miliki diwakili oleh matriks data <span class="math notranslate nohighlight">\(P\)</span> dengan koordinat <span class="math notranslate nohighlight">\((x, y)\)</span> yang telah didefinisikan secara statis di dalam baris kode.</p>
+<p>Agar titik-titik tersebut dapat berpindah menuju posisi baru (menjadi titik merah <span class="math notranslate nohighlight">\(P'\)</span>), kita harus menerapkan sebuah vektor translasi:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T = \begin{bmatrix} dx \\ dy \end{bmatrix}\end{split}\]</div>
+<p>Dalam studi kasus ini, nilai yang ditetapkan adalah <span class="math notranslate nohighlight">\(dx = 2\)</span> dan <span class="math notranslate nohighlight">\(dy = 0\)</span>. Hal ini berarti sistem secara teliti akan menambahkan setiap elemen koordinat <span class="math notranslate nohighlight">\(x\)</span> pada titik biru dengan konstanta 2, sedangkan nilai koordinat <span class="math notranslate nohighlight">\(y\)</span> akan tetap dipertahankan karena tidak ada instruksi pergeseran vertikal.</p>
+<p>Proses kalkulasi ini dieksekusi menggunakan pustaka NumPy melalui operasi tervektor (<em>vectorized operation</em>), sehingga seluruh perhitungan berjalan presisi dan efisien pada level memori tanpa memerlukan struktur perulangan manual (<em>looping</em>).</p>
+</section>
+<hr class="docutils" />
+<section id="mekanisme-matriks-penggerak-homogen">
+<h2>2. Mekanisme Matriks Penggerak Homogen<a class="headerlink" href="#mekanisme-matriks-penggerak-homogen" title="Link to this heading">#</a></h2>
+<p>Selain memanfaatkan operasi penjumlahan vektor biasa seperti formula <span class="math notranslate nohighlight">\(P + T\)</span>, di dalam konsep grafika komputer terdapat metode yang lebih canggih, yaitu menggunakan <strong>Matriks Transformasi Homogen berukuran <span class="math notranslate nohighlight">\(3 \times 3\)</span></strong>.</p>
+<p>Matriks homogen ini bertindak sebagai operator linear tunggal yang menyatukan proses translasi dan transformasi lainnya. Struktur matriks penggerak untuk kasus pergeseran <span class="math notranslate nohighlight">\(dx = 2\)</span> ini dirumuskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}M = \begin{bmatrix} 1 &amp; 0 &amp; 2 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix}\end{split}\]</div>
+<p>Dengan menggunakan representasi koordinat homogen ini, koordinat kartesius 2D <span class="math notranslate nohighlight">\((x, y)\)</span> diubah sementara menjadi koordinat 3D <span class="math notranslate nohighlight">\([x, y, 1]^T\)</span>. Melalui struktur ini, kita tidak lagi menggunakan operasi penjumlahan terpisah, melainkan murni menggunakan <strong>Perkalian Matriks</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 &amp; 2 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}\end{split}\]</div>
+<p>Setiap koordinat titik biru yang dikalikan dengan matriks operator <span class="math notranslate nohighlight">\(M\)</span> akan langsung menghasilkan posisi koordinat titik merah yang baru secara otomatis dan simultan.</p>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan-teoretis">
+<h2>3. Kesimpulan Teoretis<a class="headerlink" href="#kesimpulan-teoretis" title="Link to this heading">#</a></h2>
+<p>Transformasi geometri pada ruang digital dapat terjadi karena adanya interaksi linear yang konsisten antara Matriks Data (representasi objek titik biru) dengan Matriks Operator (bertindak sebagai penggerak).</p>
+<p>Pendekatan menggunakan matriks operator ini sangat krusial dalam ilmu komputer. Hanya dengan mendefinisikan satu matriks operator yang presisi, sistem komputer mampu mengontrol, memanipulasi, dan menggeser ribuan hingga jutaan objek titik koordinat sekaligus dalam waktu singkat. Konsep fundamental inilah yang mendasari bagaimana objek di dalam video game atau aplikasi grafis modern dapat bergerak dengan mulus, akurat, dan responsif.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="penjelasan-teknis-komputasi-transformasi-matriks">
+<h1>Penjelasan Teknis Komputasi Transformasi Matriks<a class="headerlink" href="#penjelasan-teknis-komputasi-transformasi-matriks" title="Link to this heading">#</a></h1>
+<p>Pada bagian ini, kita akan membedah logika matematika dan alur pemrograman yang digunakan di dalam skrip Python di atas. Program tersebut menerapkan konsep <strong>Translasi Simultan (Grup)</strong> memanfaatkan efisiensi pemrosesan paralel dari pustaka NumPy.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="formulasi-matematika-translasi-2d">
+<h1>1. Formulasi Matematika Translasi 2D<a class="headerlink" href="#formulasi-matematika-translasi-2d" title="Link to this heading">#</a></h1>
+<p>Secara geometris, memindahkan atau menggeser sebuah titik koordinat <span class="math notranslate nohighlight">\((x, y)\)</span> di dalam ruang kartesius sejauh vektor translasi <span class="math notranslate nohighlight">\(T = (dx, dy)\)</span> dilakukan menggunakan operasi penjumlahan vektor:</p>
+<div class="math notranslate nohighlight">
+\[x' = x + dx\]</div>
+<div class="math notranslate nohighlight">
+\[y' = y + dy\]</div>
+<p>Pada skrip pemrograman kita, vektor pergeseran didefinisikan melalui variabel <code class="docutils literal notranslate"><span class="pre">pergeseran</span> <span class="pre">=</span> <span class="pre">[2,</span> <span class="pre">0]</span></code>. Hal ini berarti:</p>
+<ul class="simple">
+<li><p>Objek akan digeser secara horizontal ke arah kanan sebesar <strong>2 satuan</strong> (<span class="math notranslate nohighlight">\(dx = 2\)</span>).</p></li>
+<li><p>Objek <strong>tidak mengalami pergeseran vertikal</strong> sama sekali pada sumbu Y (<span class="math notranslate nohighlight">\(dy = 0\)</span>).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="algoritma-perhitungan-paralel-berbasis-numpy-broadcasting">
+<h1>2. Algoritma Perhitungan Paralel Berbasis NumPy <em>Broadcasting</em><a class="headerlink" href="#algoritma-perhitungan-paralel-berbasis-numpy-broadcasting" title="Link to this heading">#</a></h1>
+<p>Kelebihan utama dari baris kode <code class="docutils literal notranslate"><span class="pre">P_kiri</span> <span class="pre">+</span> <span class="pre">T</span></code> terletak pada pemanfaatan fitur <em>Broadcasting</em> bawaan NumPy. Secara matematis, kelompok titik koordinat awal (A, B, C, D) disusun menjadi sebuah matriks berdimensi <span class="math notranslate nohighlight">\(4 \times 2\)</span> bernama <code class="docutils literal notranslate"><span class="pre">titik_biru_kiri</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{titik\_biru\_kiri} = \begin{bmatrix} -4 &amp; 3 \\ -3 &amp; 3 \\ -4 &amp; 2 \\ -3 &amp; 2 \end{bmatrix}\end{split}\]</div>
+<p>Sedangkan vektor translasi kita merupakan array 1 dimensi berukuran <span class="math notranslate nohighlight">\(1 \times 2\)</span>, yaitu vektor <span class="math notranslate nohighlight">\(T = \begin{bmatrix} 2 &amp; 0 \end{bmatrix}\)</span>.</p>
+<p>Secara aturan aljabar matriks murni, operasi penjumlahan antara matriks <span class="math notranslate nohighlight">\(4 \times 2\)</span> dengan matriks <span class="math notranslate nohighlight">\(1 \times 2\)</span> tidak dapat didefinisikan karena ketidaksesuaian dimensi ruang. Namun, di dalam pustaka NumPy, sistem akan otomatis menduplikasi dan mendistribusikan vektor <code class="docutils literal notranslate"><span class="pre">T</span></code> ke setiap baris matriks titik secara simultan di dalam memori komputer.</p>
+<p>Visualisasi operasi aljabar di latar belakang komputer dapat dijabarkan sebagai berikut:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix} -4 &amp; 3 \\ -3 &amp; 3 \\ -4 &amp; 2 \\ -3 &amp; 2 \end{bmatrix} + \begin{bmatrix} 2 &amp; 0 \\ 2 &amp; 0 \\ 2 &amp; 0 \\ 2 &amp; 0 \end{bmatrix} = \begin{bmatrix} -4+2 &amp; 3+0 \\ -3+2 &amp; 3+0 \\ -4+2 &amp; 2+0 \\ -3+2 &amp; 2+0 \end{bmatrix} = \begin{bmatrix} -2 &amp; 3 \\ -1 &amp; 3 \\ -2 &amp; 2 \\ -1 &amp; 2 \end{bmatrix}\end{split}\]</div>
+<p>Hasil komputasi di atas langsung menjadi koordinat baru untuk <code class="docutils literal notranslate"><span class="pre">titik_merah_kiri</span></code>. Hanya dengan satu baris perintah aritmatika, komputer mampu memproses banyak titik sekaligus tanpa membuang memori lewat proses perulangan (<em>looping</em>).</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="alur-logika-fungsi-visualisasi-transformasi-otomatis">
+<h1>3. Alur Logika Fungsi <code class="docutils literal notranslate"><span class="pre">visualisasi_transformasi_otomatis</span></code><a class="headerlink" href="#alur-logika-fungsi-visualisasi-transformasi-otomatis" title="Link to this heading">#</a></h1>
+<p>Ketika fungsi visualisasi dieksekusi di dalam lingkungan Google Colab, interpreter Python menjalankan rangkaian instruksi sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Konversi Tipe Data:</strong> Mengubah koordinat matriks mentah dari <code class="docutils literal notranslate"><span class="pre">titik_awal</span></code> menjadi objek array terstruktur NumPy (<code class="docutils literal notranslate"><span class="pre">P_kiri</span></code>) agar siap memproses operasi <em>broadcasting</em>.</p></li>
+<li><p><strong>Kalkulasi Titik Baru:</strong> Mengeksekusi penjumlahan matriks gabungan secara otomatis untuk mendapatkan koordinat baru kelompok kiri (<code class="docutils literal notranslate"><span class="pre">P_merah_kiri</span></code>) dan kelompok kanan (<code class="docutils literal notranslate"><span class="pre">P_merah_kanan</span></code>).</p></li>
+<li><p><strong>Penyusunan Grafik Visual (Matplotlib Plotting):</strong></p>
+<ul class="simple">
+<li><p>Fungsi <code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code> pertama dan kedua bertugas menggambar seluruh titik koordinat asal yang diwakili oleh warna <strong>biru</strong>.</p></li>
+<li><p>Fungsi <code class="docutils literal notranslate"><span class="pre">plt.scatter()</span></code> ketiga dan keempat bertugas memetakan titik koordinat baru hasil transformasi yang diwakili oleh warna <strong>merah</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Kalibrasi Skala Sumbu Grafik:</strong> Perintah <code class="docutils literal notranslate"><span class="pre">plt.xticks(np.arange(-6,</span> <span class="pre">9,</span> <span class="pre">1))</span></code> menginstruksikan sistem grafik untuk menampilkan interval angka sumbu X secara presisi dengan jarak konstan 1 satuan (dari skala -6 hingga 8). Langkah ini sangat penting agar pengguna dapat mengukur jarak perpindahan vektor spasial secara akurat secara visual.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Perhitungan_Determinan_Ekspansi_Baris_dan_Invers_Matriks_Adjoin.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tugas Kuliah: Perhitungan Determinan Ekspansi Baris dan Invers Matriks Adjoin</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="materi7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Materi 7</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">tugas transformasi matrik</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-program-pertama">kode program pertama</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-vektor-pergeseran-geser-2-ke-kanan-sesuai-gambar">1. Definisikan Vektor Pergeseran (Geser 2 ke kanan sesuai gambar)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-grup-titik-biru-kiri-a-b-c-d">2. Definisikan Grup Titik Biru Kiri (A, B, C, D)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#koordinat-x-dari-4-sampai-3">Koordinat x dari -4 sampai -3</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#definisikan-grup-titik-biru-kanan-e-g-f-h">3. Definisikan Grup Titik Biru Kanan (E, G, F, H)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#koordinat-x-dari-3-sampai-4">Koordinat x dari 3 sampai 4</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hitung-semua-titik-merah-secara-otomatis">4. Hitung semua titik merah secara otomatis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#output-hasil">Output Hasil</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kode-program-ke-2">kode program ke 2</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksekusi">— EKSEKUSI —</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#input-awal-yang-ingin-anda-coba-ubah-ubah">Input awal yang ingin Anda coba ubah-ubah:</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-teknis-mekanisme-transformasi-matriks-translasi">Analisis Teknis Mekanisme Transformasi Matriks (Translasi)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-pergeseran-koordinat-secara-akurat">1. Proses Pergeseran Koordinat Secara Akurat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-matriks-penggerak-homogen">2. Mekanisme Matriks Penggerak Homogen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-teoretis">3. Kesimpulan Teoretis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-teknis-komputasi-transformasi-matriks">Penjelasan Teknis Komputasi Transformasi Matriks</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#formulasi-matematika-translasi-2d">1. Formulasi Matematika Translasi 2D</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-perhitungan-paralel-berbasis-numpy-broadcasting">2. Algoritma Perhitungan Paralel Berbasis NumPy <em>Broadcasting</em></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-logika-fungsi-visualisasi-transformasi-otomatis">3. Alur Logika Fungsi <code class="docutils literal notranslate"><span class="pre">visualisasi_transformasi_otomatis</span></code></a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

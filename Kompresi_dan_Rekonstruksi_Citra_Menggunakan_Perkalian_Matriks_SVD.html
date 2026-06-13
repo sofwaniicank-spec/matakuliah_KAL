@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - My sample book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD &#8212; My sample book</title>
   
   
   
@@ -55,12 +57,11 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Kompresi_dan_Rekonstruksi_Citra_Menggunakan_Perkalian_Matriks_SVD';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -92,7 +93,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -291,7 +292,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fsearch.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FKompresi_dan_Rekonstruksi_Citra_Menggunakan_Perkalian_Matriks_SVD.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -303,6 +304,54 @@
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Kompresi_dan_Rekonstruksi_Citra_Menggunakan_Perkalian_Matriks_SVD.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -344,7 +393,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -353,42 +404,148 @@ document.write(`
 </div>
               
               
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search this book..."
-         aria-label="Search this book..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-gambar-sebagai-matriks">1. Konsep Dasar Gambar Sebagai Matriks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategi-rekonstruksi-gambar-lewat-perkalian-matriks-parsial">2. Strategi Rekonstruksi Gambar Lewat Perkalian Matriks Parsial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-program-python-simulator-svd-image">3. Implementasi Kode Program Python Simulator SVD Image</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jalankan-fungsi-simulator">Jalankan fungsi simulator</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="materi-10-kompresi-dan-rekonstruksi-citra-menggunakan-perkalian-matriks-svd">
+<h1>Materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD<a class="headerlink" href="#materi-10-kompresi-dan-rekonstruksi-citra-menggunakan-perkalian-matriks-svd" title="Link to this heading">#</a></h1>
+<p>Pada materi pelengkap ini, kita akan mempraktikkan instruksi khusus mengenai bagaimana sebuah matriks acak dapat disusun sedemikian rupa hingga membentuk sebuah gambar digital, lalu mendekomposisinya menggunakan <em>Singular Value Decomposition</em> (SVD) untuk kemudian dikalikan kembali secara parsial agar memunculkan gambar itu kembali secara utuh.</p>
+<hr class="docutils" />
+<section id="konsep-dasar-gambar-sebagai-matriks">
+<h2>1. Konsep Dasar Gambar Sebagai Matriks<a class="headerlink" href="#konsep-dasar-gambar-sebagai-matriks" title="Link to this heading">#</a></h2>
+<p>Di dalam representasi grafika komputer, sebuah citra digital dua dimensi (2D) <em>grayscale</em> sejatinya adalah sebuah matriks persegi berdimensi <span class="math notranslate nohighlight">\(m \times n\)</span>. Setiap elemen di dalam matriks tersebut (<span class="math notranslate nohighlight">\(a_{ij}\)</span>) menyimpan nilai intensitas cahaya piksel (skala numerik kontinu) pada koordinat baris dan kolom tertentu.</p>
+<p>Melalui teorema SVD, matriks gambar <span class="math notranslate nohighlight">\(A\)</span> ini dapat dipecah menjadi tiga komponen matriks pengali:</p>
+<div class="math notranslate nohighlight">
+\[A = U\Sigma V^T\]</div>
+<p>Jika kita tuliskan dalam bentuk penjumlahan dari perkalian vektor luar (<em>outer product</em>), persamaan di atas dapat ditransformasikan menjadi:</p>
+<div class="math notranslate nohighlight">
+\[A = \sum_{i=1}^{r} \sigma_i u_i v_i^T\]</div>
+<p>Di mana <span class="math notranslate nohighlight">\(\sigma_i\)</span> adalah nilai singular yang sudah terurut dari besar ke kecil, <span class="math notranslate nohighlight">\(u_i\)</span> melambangkan kolom fitur matriks <span class="math notranslate nohighlight">\(U\)</span>, dan <span class="math notranslate nohighlight">\(v_i^T\)</span> adalah baris dari matriks <span class="math notranslate nohighlight">\(V^T\)</span>.</p>
+</section>
+<hr class="docutils" />
+<section id="strategi-rekonstruksi-gambar-lewat-perkalian-matriks-parsial">
+<h2>2. Strategi Rekonstruksi Gambar Lewat Perkalian Matriks Parsial<a class="headerlink" href="#strategi-rekonstruksi-gambar-lewat-perkalian-matriks-parsial" title="Link to this heading">#</a></h2>
+<p>Inti dari tugas ini adalah membuktikan bahwa kita tidak perlu mengalikan seluruh baris dan kolom matriks <span class="math notranslate nohighlight">\(U, \Sigma, V^T\)</span> untuk membentuk gambar. Kita cukup mengambil sejumlah kecil komponen utama (<span class="math notranslate nohighlight">\(k\)</span> buah rank pertama) yang memiliki nilai singular terbesar.</p>
+<p>Proses perkalian matriks secara berjenjang ini dirumuskan sebagai:</p>
+<div class="math notranslate nohighlight">
+\[A_k = U_k \Sigma_k V_k^T\]</div>
+<ul class="simple">
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(k\)</span> sangat kecil (misal <span class="math notranslate nohighlight">\(k = 1\)</span> atau <span class="math notranslate nohighlight">\(k = 2\)</span>):</strong> Hasil perkalian matriks hanya menghasilkan bayangan pola garis horizontal dan vertikal kabur (mirip bintik TV rusak). Hal ini terjadi karena informasi nilai singular yang diambil masih sangat sedikit.</p></li>
+<li><p><strong>Jika <span class="math notranslate nohighlight">\(k\)</span> ditingkatkan secara bertahap (misal <span class="math notranslate nohighlight">\(k = 5, 10,\)</span> hingga <span class="math notranslate nohighlight">\(20\)</span>):</strong> Perkalian matriks antar-komponen tersebut secara ajaib mulai merekonstruksi dan memunculkan kembali detail gambar objek aslinya dengan sangat tajam dan akurat.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="implementasi-kode-program-python-simulator-svd-image">
+<h2>3. Implementasi Kode Program Python Simulator SVD Image<a class="headerlink" href="#implementasi-kode-program-python-simulator-svd-image" title="Link to this heading">#</a></h2>
+<p>Berikut adalah kode Python lengkap yang secara khusus membuat matriks gambar objek geometris buatan, melakukan dekomposisi SVD, lalu mengalikan balik matriks tersebut secara bertahap untuk memunculkan gambar ke layar Colab:
+import numpy as np
+import matplotlib.pyplot as plt</p>
+<p>def jalankan_simulasi_svd_gambar():
+# 1. MEMBUAT MATRIKS AWAL YANG MENGHASILKAN GAMBAR (Bentuk Huruf ‘X’ Digital)
+# Kita buat matriks ukuran 50 x 50 piksel bernilai nol (hitam)
+dim = 50
+A = np.zeros((dim, dim))</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Mengisi matriks secara diagonal agar membentuk pola silang &#39;X&#39; (putih bernilai 1.0)
+for i in range(dim):
+    A[i, i] = 1.0
+    A[i, dim - i - 1] = 1.0
+
+print(&quot;=&quot;*60)
+print(&quot;SIMULASI REKONSTRUKSI GAMBAR LEWAT PERKALIAN MATRIKS SVD&quot;)
+print(&quot;=&quot;*60)
+print(f&quot;Dimensi Matriks Gambar Asal A: {A.shape}&quot;)
+
+# 2. PROSES DEKOMPOSISI SVD
+U, S, VT = np.linalg.svd(A, full_matrices=False)
+
+# Buat kanvas grafik untuk membandingkan hasil perkalian matriks
+fig, axes = plt.subplots(1, 4, figsize=(15, 4))
+
+# Tampilkan Gambar Asli dari Matriks Master
+axes[0].imshow(A, cmap=&#39;gray&#39;)
+axes[0].set_title(&quot;Matriks Gambar Asli (A)&quot;)
+axes[0].axis(&#39;off&#39;)
+
+# 3. PROSES PERKALIAN BALIK MATRIKS SECARA BERTAHAP (Rank-k)
+# Urutan jumlah komponen k yang akan diuji untuk dikalikan balik
+pilihan_k = [1, 3, 10]
+
+for idx, k in enumerate(pilihan_k):
+    # Mengambil potongan matriks U, S, VT sebanyak k komponen saja
+    U_k = U[:, :k]
+    S_k = np.diag(S[:k]) # Mengubah array nilai singular menjadi matriks diagonal
+    VT_k = VT[:k, :]
+
+    # PROSES INTI DOSEN: Mengalikan matriks kembali sehingga menghasilkan gambar
+    # A_k = U_k * S_k * VT_k
+    A_reconstructed = U_k @ S_k @ VT_k
+
+    # Tampilkan hasil gambar rekonstruksi ke subplot grafik
+    axes[idx + 1].imshow(A_reconstructed, cmap=&#39;gray&#39;)
+    axes[idx + 1].set_title(f&quot;Hasil Perkalian (k = {k})&quot;)
+    axes[idx + 1].axis(&#39;off&#39;)
+
+plt.tight_layout()
+plt.show()
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="jalankan-fungsi-simulator">
+<h1>Jalankan fungsi simulator<a class="headerlink" href="#jalankan-fungsi-simulator" title="Link to this heading">#</a></h1>
+<p>jalankan_simulasi_svd_gambar()</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
     }
-  </script>
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
 
               
               
@@ -403,6 +560,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-gambar-sebagai-matriks">1. Konsep Dasar Gambar Sebagai Matriks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strategi-rekonstruksi-gambar-lewat-perkalian-matriks-parsial">2. Strategi Rekonstruksi Gambar Lewat Perkalian Matriks Parsial</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-kode-program-python-simulator-svd-image">3. Implementasi Kode Program Python Simulator SVD Image</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#jalankan-fungsi-simulator">Jalankan fungsi simulator</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

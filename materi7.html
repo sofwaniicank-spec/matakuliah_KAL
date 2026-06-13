@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Materi 7 &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'materi7';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="tugas transformasi matrik" href="tugas_transformasi_matrik.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpeg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.jpeg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book shofwani
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="materi1.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materi2.html">Materi 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="invers-matriks.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materi4.html">Materi 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tugas_Komputasi_Determinan_Menggunakan_Operasi_Baris_Elementer_%28OBE%29.html">Tugas Komputasi Determinan Menggunakan Operasi Baris Elementer (OBE)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Perhitungan_Determinan_Ekspansi_Baris_dan_Invers_Matriks_Adjoin.html">Tugas Kuliah: Perhitungan Determinan Ekspansi Baris dan Invers Matriks Adjoin</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="tugas_transformasi_matrik.html">tugas transformasi matrik</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Materi 7</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fmateri7.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/materi7.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Materi 7</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 7</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-komputasi-nilai-eigen-menggunakan-algoritma-iterasi-faktorisasi-qr">G. Komputasi Nilai Eigen Menggunakan Algoritma Iterasi Faktorisasi QR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fondasi-teoretis-faktorisasi-qr">1. Fondasi Teoretis Faktorisasi QR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-kerja-iterasi-qr">2. Mekanisme Kerja Iterasi QR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-proses-ini-menghasilkan-nilai-eigen">Mengapa Proses Ini Menghasilkan Nilai Eigen?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#studi-kasus-perhitungan-sistem">3. Studi Kasus Perhitungan Sistem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-iterasi-konvergensi">Analisis Hasil Iterasi Konvergensi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#berikut-kode-python-nya">Berikut Kode Python-nya</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-sesuai-soal-2-1-1-2">Matriks awal sesuai soal (2 1, 1 2)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-10-iterasi">Menjalankan 10 iterasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-logika-fungsi-tugas-qr-iterasi">4. Alur Logika Fungsi <code class="docutils literal notranslate"><span class="pre">tugas_qr_iterasi</span></code></a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="materi-7">
+<h1>Materi 7<a class="headerlink" href="#materi-7" title="Link to this heading">#</a></h1>
+<section id="g-komputasi-nilai-eigen-menggunakan-algoritma-iterasi-faktorisasi-qr">
+<h2>G. Komputasi Nilai Eigen Menggunakan Algoritma Iterasi Faktorisasi QR<a class="headerlink" href="#g-komputasi-nilai-eigen-menggunakan-algoritma-iterasi-faktorisasi-qr" title="Link to this heading">#</a></h2>
+<p>Pada bab ini, kita akan mempelajari pendekatan numerik untuk mencari nilai eigen (<em>eigenvalues</em>) dari suatu matriks persegi. Jika pada materi sebelumnya kita mencari nilai eigen menggunakan persamaan karakteristik determinan secara analitis (<span class="math notranslate nohighlight">\(\det(A - \lambda I) = 0\)</span>), di dalam <em>computational</em> aljabar linear, proses tersebut kurang efisien untuk matriks berdimensi besar.</p>
+<p>Sebagai gantinya, kita menerapkan algoritma iteratif modern yang digunakan secara luas pada superkomputer, yaitu <strong>Algoritma Iterasi QR</strong>.</p>
+<hr class="docutils" />
+<section id="fondasi-teoretis-faktorisasi-qr">
+<h3>1. Fondasi Teoretis Faktorisasi QR<a class="headerlink" href="#fondasi-teoretis-faktorisasi-qr" title="Link to this heading">#</a></h3>
+<p>Algoritma QR bekerja berdasarkan teorema aljabar linear yang menyatakan bahwa setiap matriks persegi riil <span class="math notranslate nohighlight">\(A\)</span> dapat didekomposisi atau difaktorkan menjadi jumlah perkalian dua matriks khusus, yaitu matriks <span class="math notranslate nohighlight">\(Q\)</span> dan matriks <span class="math notranslate nohighlight">\(R\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[A = Q \cdot R\]</div>
+<p>Di mana karakteristik masing-masing matriks tersebut adalah:</p>
+<ul class="simple">
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\(Q\)</span> (Matriks Ortogonal/Ortonormal):</strong> Merupakan matriks yang kolom-kolomnya terdiri dari vektor-vektor satuan yang saling tegak lurus (ortogonal). Sifat utamanya adalah hasil transpos matriks sama dengan inversnya (<span class="math notranslate nohighlight">\(Q^T = Q^{-1}\)</span>), sehingga jika dikalikan dengan transposnya akan menghasilkan matriks identitas (<span class="math notranslate nohighlight">\(Q^T Q = I\)</span>).</p></li>
+<li><p><strong>Matriks <span class="math notranslate nohighlight">\(R\)</span> (Matriks Segitiga Atas / <em>Upper Triangular Matrix</em>):</strong> Merupakan matriks di mana seluruh elemen angka di bawah diagonal utamanya bernilai nol.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mekanisme-kerja-iterasi-qr">
+<h3>2. Mekanisme Kerja Iterasi QR<a class="headerlink" href="#mekanisme-kerja-iterasi-qr" title="Link to this heading">#</a></h3>
+<p>Logika utama dari algoritma ini adalah melakukan proses faktorisasi dan perkalian balik secara berulang-ulang (<em>looping</em>). Alur algoritmanya dapat dijabarkan sebagai berikut:</p>
+<ol class="arabic simple">
+<li><p>Kita mulai dengan matriks awal <span class="math notranslate nohighlight">\(A_0 = A\)</span>.</p></li>
+<li><p>Pada iterasi ke-<span class="math notranslate nohighlight">\(k\)</span>, kita faktorkan matriks aktif menjadi komponen ortogonal dan segitiga atas:
+$<span class="math notranslate nohighlight">\(A_k = Q_k \cdot R_k\)</span>$</p></li>
+<li><p>Langkah krusial berikutnya adalah melakukan <strong>perkalian balik</strong> kedua matriks hasil dekomposisi tersebut untuk membentuk matriks baru <span class="math notranslate nohighlight">\(A_{k+1}\)</span> bagi iterasi selanjutnya:
+$<span class="math notranslate nohighlight">\(A_{k+1} = R_k \cdot Q_k\)</span>$</p></li>
+</ol>
+<section id="mengapa-proses-ini-menghasilkan-nilai-eigen">
+<h4>Mengapa Proses Ini Menghasilkan Nilai Eigen?<a class="headerlink" href="#mengapa-proses-ini-menghasilkan-nilai-eigen" title="Link to this heading">#</a></h4>
+<p>Secara aljabar, jika kita substitusikan nilai <span class="math notranslate nohighlight">\(R_k = Q_k^{-1} A_k\)</span> ke dalam persamaan perkalian balik, kita akan melihat sebuah hubungan kesamaan:</p>
+<div class="math notranslate nohighlight">
+\[A_{k+1} = R_k Q_k = (Q_k^{-1} A_k) Q_k = Q_k^T A_k Q_k\]</div>
+<p>Persamaan <span class="math notranslate nohighlight">\(A_{k+1} = Q_k^T A_k Q_k\)</span> membuktikan bahwa matriks <span class="math notranslate nohighlight">\(A_{k+1}\)</span> memiliki sifat <strong>serupa (<em>similar</em>)</strong> dengan matriks <span class="math notranslate nohighlight">\(A_k\)</span>. Berdasarkan teorema aljabar linear, dua matriks yang serupa dipastikan memiliki nilai eigen yang sama persis.</p>
+<p>Apabila proses dekomposisi dan perkalian balik ini dieksekusi secara berulang-ulang (<span class="math notranslate nohighlight">\(A_0 \rightarrow A_1 \rightarrow A_2 \rightarrow A_3 \rightarrow \dots \rightarrow A_k\)</span>), matriks akan mengalami konvergensi secara numerik. Elemen-elemen di bawah diagonal utama secara bertahap akan mengecil mendekati nol, dan matriks secara otomatis berubah menjadi bentuk segitiga atas baru, di mana <strong>nilai-nilai eigen asli dari matriks tersebut akan muncul secara berurutan pada elemen diagonal utamanya</strong>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="studi-kasus-perhitungan-sistem">
+<h3>3. Studi Kasus Perhitungan Sistem<a class="headerlink" href="#studi-kasus-perhitungan-sistem" title="Link to this heading">#</a></h3>
+<p>Dalam implementasi program ini, kita menguji algoritma numerik pada matriks simetris berorde <span class="math notranslate nohighlight">\(2 \times 2\)</span> berikut:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \begin{bmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{bmatrix}\end{split}\]</div>
+<p>Ketika program mengeksekusi fungsi dekomposisi <code class="docutils literal notranslate"><span class="pre">np.linalg.qr()</span></code>, komputer menggunakan algoritma berbasis transformasi Householder atau proses Gram-Schmidt untuk memisahkan matriks <span class="math notranslate nohighlight">\(A\)</span> secara presisi.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="analisis-hasil-iterasi-konvergensi">
+<h1>Analisis Hasil Iterasi Konvergensi<a class="headerlink" href="#analisis-hasil-iterasi-konvergensi" title="Link to this heading">#</a></h1>
+<p>Melalui skrip loop sebanyak 10 kali iterasi, matriks <span class="math notranslate nohighlight">\(A\)</span> mengalami transformasi bentuk struktural. Kita dapat menganalisis perkembangan konvergensinya sebagai berikut:</p>
+<ul class="simple">
+<li><p><strong>Pada Iterasi Awal (Iterasi 1):</strong> Matriks hasil perkalian balik <span class="math notranslate nohighlight">\(A_1 = R_0 Q_0\)</span> masih memuat angka yang tersebar di luar diagonal utama, namun strukturnya sudah mulai condong dominan ke arah elemen diagonal.</p></li>
+<li><p><strong>Pada Iterasi Akhir (Iterasi 10):</strong> Matriks telah mencapai kondisi konvergen sempurna. Nilai elemen pada posisi baris kedua kolom pertama (<span class="math notranslate nohighlight">\(a_{21}\)</span>) telah mengecil drastis hingga mendekati nilai nol mutlak.</p></li>
+</ul>
+<p>Setelah perulangan ke-10 selesai, struktur matriks final yang diperoleh adalah:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A_{10} \approx \begin{bmatrix} 3.0000 &amp; 0.0000 \\ 0.0000 &amp; 1.0000 \end{bmatrix}\end{split}\]</div>
+<p>Berdasarkan nilai diagonal utama matriks hasil iterasi ke-10 tersebut, kita langsung mendapatkan dua nilai eigen sistem secara akurat, yaitu: <span class="math notranslate nohighlight">\(\lambda_1 = 3.0000\)</span> dan <span class="math notranslate nohighlight">\(\lambda_2 = 1.0000\)</span>.</p>
+<hr class="docutils" />
+<section id="berikut-kode-python-nya">
+<h2>Berikut Kode Python-nya<a class="headerlink" href="#berikut-kode-python-nya" title="Link to this heading">#</a></h2>
+<p>import numpy as np</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="matriks-awal-sesuai-soal-2-1-1-2">
+<h1>Matriks awal sesuai soal (2 1, 1 2)<a class="headerlink" href="#matriks-awal-sesuai-soal-2-1-1-2" title="Link to this heading">#</a></h1>
+<p>A = np.array([[2, 1],
+[1, 2]], dtype=float)</p>
+<p>def tugas_qr_iterasi(matriks_awal, n_iterasi=10):
+Ak = matriks_awal.copy()</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>print(&quot;=&quot;*60)
+print(&quot;PROGRAM FAKTORISASI QR - TUGAS ALJABAR LINEAR&quot;)
+print(&quot;=&quot;*60)
+print(f&quot;Matriks Awal:\n{Ak}\n&quot;)
+
+# Loop ini akan berjalan sebanyak 10 kali sesuai permintaan Bapak
+for k in range(1, n_iterasi + 1):
+    # 1. Proses Faktorisasi: Mencari Q (Ortonormal) dan R (Segitiga Atas)
+    Qk, Rk = np.linalg.qr(Ak)
+
+    # 2. Proses Perkalian Balik: Ak+1 = Rk * Qk
+    Ak_next = Rk @ Qk
+
+    # Tampilkan detail setiap langkahnya
+    print(f&quot;--- ITERASI KE-{k} ---&quot;)
+    print(f&quot;Q{k} (Matriks Ortogonal):\n{Qk}&quot;)
+    print(f&quot;R{k} (Matriks Segitiga Atas):\n{Rk}&quot;)
+    print(f&quot;A{k+1} (Hasil R{k} * Q{k}):\n{Ak_next}&quot;)
+    print(&quot;-&quot; * 30)
+
+    # Simpan hasil untuk iterasi berikutnya
+    Ak = Ak_next
+
+print(&quot;\n&quot; + &quot;=&quot;*60)
+print(f&quot;HASIL AKHIR SETELAH {n_iterasi} ITERASI:&quot;)
+print(&quot;=&quot;*60)
+print(f&quot;Matriks Akhir:\n{Ak}&quot;)
+print(f&quot;\nNilai Eigen (Lihat angka diagonalnya):&quot;)
+print(f&quot;λ1 = {Ak[0,0]:.4f}&quot;)
+print(f&quot;λ2 = {Ak[1,1]:.4f}&quot;)
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="menjalankan-10-iterasi">
+<h1>Menjalankan 10 iterasi<a class="headerlink" href="#menjalankan-10-iterasi" title="Link to this heading">#</a></h1>
+<p>tugas_qr_iterasi(A, 10)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="alur-logika-fungsi-tugas-qr-iterasi">
+<h1>4. Alur Logika Fungsi <code class="docutils literal notranslate"><span class="pre">tugas_qr_iterasi</span></code><a class="headerlink" href="#alur-logika-fungsi-tugas-qr-iterasi" title="Link to this heading">#</a></h1>
+<p>Ketika skrip Python dijalankan, interpreter komputer mengeksekusi baris kode berdasarkan urutan instruksi logis berikut:</p>
+<ol class="arabic simple">
+<li><p><strong>Inisialisasi Duplikasi Data:</strong> Perintah <code class="docutils literal notranslate"><span class="pre">matriks_awal.copy()</span></code> digunakan untuk menyalin struktur data asli ke dalam variabel operasional <code class="docutils literal notranslate"><span class="pre">Ak</span></code> agar matriks awal <span class="math notranslate nohighlight">\(A\)</span> tidak rusak atau berubah nilainya selama proses komputasi.</p></li>
+<li><p><strong>Eksekusi Dekomposisi Simultan:</strong> Di dalam blok perulangan <code class="docutils literal notranslate"><span class="pre">for</span></code>, perintah <code class="docutils literal notranslate"><span class="pre">np.linalg.qr(Ak)</span></code> memanggil fungsi sub-rutin tingkat tinggi NumPy untuk mengekstrak matriks ortogonal (<code class="docutils literal notranslate"><span class="pre">Qk</span></code>) dan matriks segitiga atas (<code class="docutils literal notranslate"><span class="pre">Rk</span></code>).</p></li>
+<li><p><strong>Penyusunan Ulang Matriks:</strong> Operator <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> pada baris <code class="docutils literal notranslate"><span class="pre">Rk</span> <span class="pre">&#64;</span> <span class="pre">Qk</span></code> menginstruksikan proses perkalian <em>dot-product</em> matriks secara paralel untuk menghasilkan struktur matriks baru yang serupa bagi iterasi berikutnya.</p></li>
+<li><p><strong>Ekstrak Komponen Diagonal:</strong> Setelah perulangan menyentuh batas <code class="docutils literal notranslate"><span class="pre">n_iterasi=10</span></code>, program mengakses memori indeks array <code class="docutils literal notranslate"><span class="pre">Ak[0,0]</span></code> dan <code class="docutils literal notranslate"><span class="pre">Ak[1,1]</span></code> untuk menampilkan nilai eigen utama secara teks di terminal.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tugas_transformasi_matrik.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">tugas transformasi matrik</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Materi 7</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#g-komputasi-nilai-eigen-menggunakan-algoritma-iterasi-faktorisasi-qr">G. Komputasi Nilai Eigen Menggunakan Algoritma Iterasi Faktorisasi QR</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fondasi-teoretis-faktorisasi-qr">1. Fondasi Teoretis Faktorisasi QR</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-kerja-iterasi-qr">2. Mekanisme Kerja Iterasi QR</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-proses-ini-menghasilkan-nilai-eigen">Mengapa Proses Ini Menghasilkan Nilai Eigen?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#studi-kasus-perhitungan-sistem">3. Studi Kasus Perhitungan Sistem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil-iterasi-konvergensi">Analisis Hasil Iterasi Konvergensi</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#berikut-kode-python-nya">Berikut Kode Python-nya</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#matriks-awal-sesuai-soal-2-1-1-2">Matriks awal sesuai soal (2 1, 1 2)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menjalankan-10-iterasi">Menjalankan 10 iterasi</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-logika-fungsi-tugas-qr-iterasi">4. Alur Logika Fungsi <code class="docutils literal notranslate"><span class="pre">tugas_qr_iterasi</span></code></a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

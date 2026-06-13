@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dokumentasi Cara Kerja Program Face Recognition dengan SVD / Eigenfaces &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD/Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD/Eigenfaces';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.jpeg" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.jpeg" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to your Jupyter Book shofwani
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../materi1.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../materi2.html">Materi 2</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../invers-matriks.html">MENCARI A invers matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../materi4.html">Materi 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tugas_Komputasi_Determinan_Menggunakan_Operasi_Baris_Elementer_%28OBE%29.html">Tugas Komputasi Determinan Menggunakan Operasi Baris Elementer (OBE)</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../../Perhitungan_Determinan_Ekspansi_Baris_dan_Invers_Matriks_Adjoin.html">Tugas Kuliah: Perhitungan Determinan Ekspansi Baris dan Invers Matriks Adjoin</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../tugas_transformasi_matrik.html">tugas transformasi matrik</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../../materi7.html">Materi 7</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FDokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD/Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD/Eigenfaces.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD/Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD/Eigenfaces.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Dokumentasi Cara Kerja Program Face Recognition dengan SVD / Eigenfaces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dokumentasi Cara Kerja Program Face Recognition dengan SVD / Eigenfaces</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-program">1. Tujuan Program</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-harus-diinstall">2. Library yang Harus Diinstall</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python">Install Python</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="dokumentasi-cara-kerja-program-face-recognition-dengan-svd-eigenfaces">
+<h1>Dokumentasi Cara Kerja Program Face Recognition dengan SVD / Eigenfaces<a class="headerlink" href="#dokumentasi-cara-kerja-program-face-recognition-dengan-svd-eigenfaces" title="Link to this heading">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tujuan-program">
+<h1>1. Tujuan Program<a class="headerlink" href="#tujuan-program" title="Link to this heading">#</a></h1>
+<p>Program ini digunakan untuk melakukan <strong>pengenalan wajah (<em>face recognition</em>)</strong> menggunakan metode:</p>
+<ul class="simple">
+<li><p><em>Singular Value Decomposition</em> (SVD)</p></li>
+<li><p><em>Eigenfaces</em></p></li>
+<li><p><em>Euclidean Distance</em></p></li>
+</ul>
+<p>Secara sederhana:</p>
+<ol class="arabic simple">
+<li><p>Gambar wajah dibaca</p></li>
+<li><p>Diubah menjadi angka/matriks</p></li>
+<li><p>Direduksi dimensinya menggunakan SVD</p></li>
+<li><p>Dibandingkan tingkat kemiripannya</p></li>
+<li><p>Dipilih wajah paling mirip</p></li>
+</ol>
+<p>Karena manusia rupanya suka mengubah wajah menjadi ribuan angka lalu memaksa matriks mencari identitas seseorang. Dunia benar-benar memberi aljabar linear pekerjaan yang aneh.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="library-yang-harus-diinstall">
+<h1>2. Library yang Harus Diinstall<a class="headerlink" href="#library-yang-harus-diinstall" title="Link to this heading">#</a></h1>
+<p>Program membutuhkan beberapa library Python.</p>
+<section id="install-python">
+<h2>Install Python<a class="headerlink" href="#install-python" title="Link to this heading">#</a></h2>
+<p>Gunakan:</p>
+<ul class="simple">
+<li><p>Python 3.10+</p></li>
+<li><p>Disarankan Python 3.11 atau 3.12</p></li>
+</ul>
+<p>Cek versi:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
+
+<span class="c1">## Install Dependensi</span>
+
+Jalankan:
+
+<span class="sb">```</span>bash
+pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pillow
+
+<span class="c1"># Library yang digunakan:</span>
+!<span class="o">[</span>alt<span class="w"> </span>text<span class="o">](</span>image.png<span class="o">)</span>
+
+<span class="c1"># struktur dataset</span>
+!<span class="o">[</span>alt<span class="w"> </span>text<span class="o">](</span>image-1.png<span class="o">)</span>
+
+<span class="c1">### Penjelasan:</span>
+*<span class="w"> </span>Folder<span class="w"> </span><span class="sb">`</span>train<span class="sb">`</span><span class="w"> </span>berisi<span class="w"> </span>data<span class="w"> </span>training.
+*<span class="w"> </span>Setiap<span class="w"> </span>subfolder<span class="w"> </span>dianggap<span class="w"> </span><span class="m">1</span><span class="w"> </span>orang.
+*<span class="w"> </span>Nama<span class="w"> </span>folder<span class="w"> </span>menjadi<span class="w"> </span>label<span class="w"> </span>identitas.
+*<span class="w"> </span><span class="sb">`</span>test.jpg<span class="sb">`</span><span class="w"> </span>adalah<span class="w"> </span>gambar<span class="w"> </span>yang<span class="w"> </span>ingin<span class="w"> </span>dikenali.
+
+---
+
+<span class="c1">## 4. Cara Menjalankan Program</span>
+
+<span class="c1">### Menjalankan Dataset Asli</span>
+python<span class="w"> </span><span class="s2">&quot;pengenalan copy.py&quot;</span><span class="w"> </span>--train<span class="w"> </span>dataset/train<span class="w"> </span>--test<span class="w"> </span>dataset/test.jpg<span class="w"> </span>--size<span class="w"> </span>64x64
+
+<span class="c1">## Menjalankan Mode Demo</span>
+python<span class="w"> </span><span class="s2">&quot;pengenalan copy.py&quot;</span><span class="w"> </span>--demo
+
+Mode<span class="w"> </span>demo<span class="w"> </span>akan:
+*<span class="w"> </span>Membuat<span class="w"> </span>dataset<span class="w"> </span>wajah<span class="w"> </span>palsu<span class="w"> </span>otomatis
+*<span class="w"> </span>Menjalankan<span class="w"> </span>SVD
+*<span class="w"> </span>Melakukan<span class="w"> </span>pengenalan<span class="w"> </span>wajah
+
+Jadi<span class="w"> </span>bahkan<span class="w"> </span>kalau<span class="w"> </span>belum<span class="w"> </span>punya<span class="w"> </span>dataset<span class="w"> </span>asli,<span class="w"> </span>program<span class="w"> </span>tetap<span class="w"> </span>bisa<span class="w"> </span>diuji.<span class="w"> </span>Komputer<span class="w"> </span>membuat<span class="w"> </span>wajah<span class="w"> </span>sintetis<span class="w"> </span>untuk<span class="w"> </span>membuktikan<span class="w"> </span>matematika<span class="w"> </span>bekerja.<span class="w"> </span>Sedikit<span class="w"> </span>menyeramkan<span class="w"> </span>kalau<span class="w"> </span>dipikir<span class="w"> </span>terlalu<span class="w"> </span>lama.
+
+---
+
+<span class="c1">## 5. Alur Besar Program</span>
+
+Secara<span class="w"> </span>umum<span class="w"> </span>program<span class="w"> </span>bekerja<span class="w"> </span>seperti<span class="w"> </span>ini:
+Load<span class="w"> </span>gambar
+↓
+Ubah<span class="w"> </span>grayscale
+↓
+Resize<span class="w"> </span>gambar
+↓
+Flatten<span class="w"> </span>menjadi<span class="w"> </span>vektor
+↓
+Gabungkan<span class="w"> </span>menjadi<span class="w"> </span>matriks<span class="w"> </span>X
+↓
+Hitung<span class="w"> </span>mean<span class="w"> </span>face
+↓
+Centering<span class="w"> </span>data
+↓
+Lakukan<span class="w"> </span>SVD
+↓
+Ambil<span class="w"> </span>eigenface
+↓
+Proyeksikan<span class="w"> </span>wajah
+↓
+Hitung<span class="w"> </span>jarak<span class="w"> </span>Euclidean
+↓
+Pilih<span class="w"> </span>wajah<span class="w"> </span>paling<span class="w"> </span>mirip
+
+<span class="c1">## 6. Penjelasan Step-by-Step Pengolahan Data</span>
+
+<span class="c1">### STEP 1 — Membaca Dataset</span>
+
+**Fungsi:**
+load_training_images<span class="o">()</span>
+
+<span class="c1"># Kode utama:</span>
+<span class="k">for</span><span class="w"> </span>person_dir<span class="w"> </span><span class="k">in</span><span class="w"> </span>sorted<span class="o">(</span>path<span class="w"> </span><span class="k">for</span><span class="w"> </span>path<span class="w"> </span><span class="k">in</span><span class="w"> </span>train_dir.iterdir<span class="o">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>path.is_dir<span class="o">())</span>:
+
+**Yang<span class="w"> </span>terjadi:**
+<span class="m">1</span>.<span class="w"> </span>Program<span class="w"> </span>membuka<span class="w"> </span>folder<span class="w"> </span>*training*
+<span class="m">2</span>.<span class="w"> </span>Membaca<span class="w"> </span>semua<span class="w"> </span>subfolder
+<span class="m">3</span>.<span class="w"> </span>Nama<span class="w"> </span>subfolder<span class="w"> </span>dianggap<span class="w"> </span>label<span class="w"> </span>orang
+<span class="m">4</span>.<span class="w"> </span>Semua<span class="w"> </span>gambar<span class="w"> </span>di<span class="w"> </span>dalamnya<span class="w"> </span>dimuat
+
+**Contoh:**
+train/
+<span class="w"> </span>├──<span class="w"> </span>face1/
+<span class="w"> </span>├──<span class="w"> </span>face2/
+<span class="w"> </span><span class="c1">### STEP 2 — Membaca Gambar</span>
+
+**Fungsi:**
+load_grayscale_image<span class="o">()</span>
+
+**Kode:**
+<span class="nv">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Image.open<span class="o">(</span>path<span class="o">)</span>.convert<span class="o">(</span><span class="s2">&quot;L&quot;</span><span class="o">)</span>.resize<span class="o">(</span>size<span class="o">)</span>
+
+**Yang<span class="w"> </span>dilakukan:**
+a.<span class="w"> </span>Membuka<span class="w"> </span>gambar
+
+Image.open<span class="o">(</span>path<span class="o">)</span>
+
+**Gambar<span class="w"> </span>dibaca<span class="w"> </span>dari<span class="w"> </span>file.**
+b.<span class="w"> </span>Mengubah<span class="w"> </span>ke<span class="w"> </span>grayscale
+.convert<span class="o">(</span><span class="s2">&quot;L&quot;</span><span class="o">)</span>
+
+**Gambar<span class="w"> </span>RGB:**
+Merah<span class="w"> </span>Hijau<span class="w"> </span>Biru
+
+**diubah<span class="w"> </span>menjadi:**
+<span class="m">1</span><span class="w"> </span>channel<span class="w"> </span>abu-abu
+
+**Tujuannya:**
+*<span class="w"> </span>Komputasi<span class="w"> </span>lebih<span class="w"> </span>ringan
+*<span class="w"> </span>Lebih<span class="w"> </span>mudah<span class="w"> </span>diproses<span class="w"> </span>matriks
+
+Karena<span class="w"> </span>SVD<span class="w"> </span>tidak<span class="w"> </span>peduli<span class="w"> </span>warna<span class="w"> </span>kulit,<span class="w"> </span>hanya<span class="w"> </span>pola<span class="w"> </span>intensitas<span class="w"> </span>cahaya.
+
+<span class="c1">### c. Resize gambar</span>
+.resize<span class="o">(</span>size<span class="o">)</span>
+Semua<span class="w"> </span>gambar<span class="w"> </span>harus<span class="w"> </span>sama<span class="w"> </span>ukuran.
+
+**Contoh:**
+<span class="m">64</span><span class="w"> </span>x<span class="w"> </span><span class="m">64</span>
+**Kenapa<span class="w"> </span>penting?**<span class="w"> </span>Karena<span class="w"> </span>matriks<span class="w"> </span>harus<span class="w"> </span>punya<span class="w"> </span>dimensi<span class="w"> </span>sama.<span class="w"> </span>
+Kalau<span class="w"> </span>satu<span class="w"> </span>gambar<span class="w"> </span>64x64<span class="w"> </span>dan<span class="w"> </span>lainnya<span class="w"> </span>300x500,<span class="w"> </span>SVD<span class="w"> </span>akan<span class="w"> </span>protes<span class="w"> </span>secara<span class="w"> </span>matematis.<span class="w"> </span>Dan<span class="w"> </span>untuk<span class="w"> </span>sekali<span class="w"> </span>ini,<span class="w"> </span>protesnya<span class="w"> </span>valid.
+
+---
+
+<span class="c1">### STEP 3 — Mengubah Gambar Menjadi Matriks</span>
+
+**Kode:**
+<span class="nv">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.asarray<span class="o">(</span>image,<span class="w"> </span><span class="nv">dtype</span><span class="o">=</span>np.float64<span class="o">)</span><span class="w"> </span>/<span class="w"> </span><span class="m">255</span>.0
+**hasil**
+<span class="o">[[</span><span class="m">0</span>.1<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.3<span class="o">]</span>
+<span class="w"> </span><span class="o">[</span><span class="m">0</span>.5<span class="w"> </span><span class="m">0</span>.8<span class="w"> </span><span class="m">0</span>.1<span class="o">]]</span>
+
+<span class="w"> </span>Setiap<span class="w"> </span>piksel<span class="w"> </span>menjadi<span class="w"> </span>angka<span class="w"> </span>antara:
+*<span class="w"> </span>**0**<span class="w"> </span><span class="o">(</span>hitam<span class="o">)</span>
+*<span class="w"> </span>**255**<span class="w"> </span><span class="o">(</span>putih<span class="o">)</span>
+
+---
+
+<span class="c1">### STEP 4 — Flatten Menjadi Vektor</span>
+
+**Kode:**
+<span class="nv">vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>matrix.reshape<span class="o">(</span>-1,<span class="w"> </span><span class="m">1</span><span class="o">)</span>
+
+**Contoh<span class="w"> </span>Matriks:**
+<span class="o">[[</span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="o">]</span>
+<span class="w"> </span><span class="o">[</span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="o">]]</span>
+
+<span class="w"> </span>Menjadi<span class="w"> </span>Vektor<span class="w"> </span>Kolom:<span class="w"> </span><span class="nv">$$</span><span class="se">\b</span>egin<span class="o">{</span>bmatrix<span class="o">}</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\\</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\\</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\\</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\e</span>nd<span class="o">{</span>bmatrix<span class="o">}</span><span class="nv">$$</span>
+
+**Kenapa<span class="w"> </span>dilakukan?**<span class="w"> </span>Karena<span class="w"> </span>algoritma<span class="w"> </span>SVD<span class="w"> </span>bekerja<span class="w"> </span>pada<span class="w"> </span>bentuk<span class="w"> </span>vektor.
+
+---
+
+<span class="c1">## STEP 5 — Membentuk Matriks Training X</span>
+
+**Kode:**
+<span class="nv">x_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.hstack<span class="o">(</span>vectors<span class="o">)</span>
+
+Semua<span class="w"> </span>vektor<span class="w"> </span>digabung:<span class="w"> </span><span class="nv">$X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="se">\b</span>egin<span class="o">{</span>bmatrix<span class="o">}</span><span class="w"> </span>x_1<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>x_2<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>x_3<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="se">\d</span>ots<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>x_n<span class="w"> </span><span class="se">\e</span>nd<span class="o">{</span>bmatrix<span class="o">}</span>$
+
+Contoh<span class="w"> </span>susunan<span class="w"> </span>kolom:<span class="w"> </span>
+<span class="nv">$$</span><span class="se">\b</span>egin<span class="o">{</span>bmatrix<span class="o">}</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="se">\\</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\\</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\e</span>nd<span class="o">{</span>bmatrix<span class="o">}</span><span class="nv">$$</span>
+
+**Makna:**
+*<span class="w"> </span>Setiap<span class="w"> </span><span class="nv">kolom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>wajah
+*<span class="w"> </span>Setiap<span class="w"> </span><span class="nv">baris</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>nilai<span class="w"> </span>piksel<span class="w"> </span>tertentu
+
+---
+
+<span class="c1">## STEP 6 — Menghitung Mean Face</span>
+
+**Kode:**
+<span class="nv">mean_face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.mean<span class="o">(</span>x_matrix,<span class="w"> </span><span class="nv">axis</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="nv">keepdims</span><span class="o">=</span>True<span class="o">)</span>
+
+Program<span class="w"> </span>menghitung<span class="w"> </span>wajah<span class="w"> </span>rata-rata.
+
+Secara<span class="w"> </span>matematis:
+
+<span class="nv">$$</span><span class="se">\m</span>u<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="se">\t</span>ext<span class="o">{</span>rata-rata<span class="w"> </span>seluruh<span class="w"> </span>wajah<span class="o">}</span><span class="nv">$$</span>
+
+Hasilnya<span class="w"> </span>disebut<span class="w"> </span>*mean<span class="w"> </span>face*.<span class="w"> </span>Ini<span class="w"> </span>penting<span class="w"> </span>karena<span class="w"> </span>algoritma<span class="w"> </span>ingin<span class="w"> </span>mencari<span class="w"> </span>perbedaan<span class="w"> </span>wajah<span class="w"> </span>terhadap<span class="w"> </span>wajah<span class="w"> </span>rata-rata.
+
+---
+
+<span class="c1">## STEP 7 — Centering Data</span>
+
+**Kode:**
+<span class="nv">centered_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>x_matrix<span class="w"> </span>-<span class="w"> </span>mean_face
+**Artinya:**<span class="w"> </span>Setiap<span class="w"> </span>gambar<span class="w"> </span>dikurangi<span class="w"> </span>wajah<span class="w"> </span>rata-rata.
+
+**Kenapa?**<span class="w"> </span>Karena<span class="w"> </span>PCA/SVD<span class="w"> </span>bekerja<span class="w"> </span>lebih<span class="w"> </span>baik<span class="w"> </span>jika<span class="w"> </span>data<span class="w"> </span>dipusatkan<span class="w"> </span>terhadap<span class="w"> </span>*mean*.<span class="w"> </span>Kalau<span class="w"> </span>tidak<span class="w"> </span>di-*center*,<span class="w"> </span>variasi<span class="w"> </span>data<span class="w"> </span>sulit<span class="w"> </span>dianalisis<span class="w"> </span>dan<span class="w"> </span>*eigenface*<span class="w"> </span>kurang<span class="w"> </span>representatif.
+
+---
+
+<span class="c1">## STEP 8 — Singular Value Decomposition (SVD)</span>
+
+**Kode:**
+u_matrix,<span class="w"> </span>singular_values,<span class="w"> </span><span class="nv">vt_matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.linalg.svd<span class="o">(</span>centered_matrix<span class="o">)</span>
+
+Inilah<span class="w"> </span>inti<span class="w"> </span>program.<span class="w"> </span>Rumus:<span class="w"> </span><span class="nv">$$A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>U<span class="se">\S</span>igma<span class="w"> </span>V^T<span class="nv">$$</span>
+
+---
+
+<span class="c1">## Penjelasan komponen matriks hasil dekomposisi:</span>
+
+<span class="p">|</span><span class="w"> </span>matriks<span class="w"> </span><span class="p">|</span><span class="w"> </span>Fungsi<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>:---:<span class="w"> </span><span class="p">|</span><span class="w"> </span>:---<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span><span class="nv">$U</span>$<span class="w"> </span><span class="p">|</span><span class="w"> </span>Basis<span class="w"> </span>fitur<span class="w"> </span>wajah<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span>$<span class="se">\S</span>igma$<span class="w"> </span><span class="p">|</span><span class="w"> </span>Besarnya<span class="w"> </span>informasi<span class="w"> </span><span class="p">|</span>
+<span class="p">|</span><span class="w"> </span><span class="nv">$V</span>^T$<span class="w"> </span><span class="p">|</span><span class="w"> </span>Koefisien<span class="w"> </span>transformasi<span class="w"> </span><span class="p">|</span>
+
+---
+
+<span class="c1">## Apa itu Eigenface?</span>
+
+Kolom<span class="w"> </span>pada<span class="w"> </span>matriks<span class="w"> </span><span class="nv">$U</span>$<span class="w"> </span>disebut<span class="w"> </span>*eigenface*.<span class="w"> </span>*Eigenface*<span class="w"> </span>adalah<span class="w"> </span>pola<span class="w"> </span>wajah<span class="w"> </span>utama<span class="w"> </span>yang<span class="w"> </span>ditemukan<span class="w"> </span>sistem.<span class="w"> </span>Bukan<span class="w"> </span>wajah<span class="w"> </span>manusia<span class="w"> </span>normal.<span class="w"> </span>Lebih<span class="w"> </span>seperti<span class="w"> </span>mimpi<span class="w"> </span>buruk<span class="w"> </span>statistik<span class="w"> </span>abu-abu<span class="w"> </span>hasil<span class="w"> </span>kompresi<span class="w"> </span>matematika.
+
+---
+
+<span class="c1">## STEP 9 — Memilih Komponen Penting</span>
+
+**Kode:**
+<span class="nv">u_k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>u_matrix<span class="o">[</span>:,<span class="w"> </span>:component_count<span class="o">]</span>
+
+Program<span class="w"> </span>hanya<span class="w"> </span>mengambil<span class="w"> </span>beberapa<span class="w"> </span>komponen<span class="w"> </span>terbaik.
+
+**Kenapa?**<span class="w"> </span>Karena<span class="w"> </span>komponen<span class="w"> </span>besar<span class="w"> </span>melambangkan<span class="w"> </span>informasi<span class="w"> </span>penting,<span class="w"> </span>sedangkan<span class="w"> </span>komponen<span class="w"> </span>kecil<span class="w"> </span>melambangkan<span class="w"> </span>*noise*.
+
+**Tujuannya<span class="w"> </span>adalah<span class="w"> </span>reduksi<span class="w"> </span>dimensi:**
+<span class="m">4096</span><span class="w"> </span>piksel<span class="w">  </span>↓<span class="w">  </span><span class="m">20</span><span class="w"> </span>fitur<span class="w"> </span>penting
+
+<span class="c1">##STEP 10 — Proyeksi Wajah Training</span>
+Kode:
+<span class="nv">train_weights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>u_k.T<span class="w"> </span>@<span class="w"> </span>centered_matrix
+<span class="c1">## STEP 12 — Menghitung Jarak</span>
+
+**Kode:**
+<span class="sb">```</span>python
+<span class="nv">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.linalg.norm<span class="o">(</span>test_weights<span class="w"> </span>-<span class="w"> </span>train_weights<span class="o">[</span>:,<span class="w"> </span><span class="o">[</span>index<span class="o">]])</span>
+
+<span class="c1">## STEP 13 — Menentukan Prediks</span>
+**kode:**
+distances.sort<span class="o">(</span><span class="nv">key</span><span class="o">=</span>lambda<span class="w"> </span>row:<span class="w"> </span>row<span class="o">[</span><span class="m">2</span><span class="o">])</span>
+Program<span class="w"> </span>mencari<span class="w"> </span>jarak<span class="w"> </span>terkecil.
+
+Contoh<span class="w"> </span>urutan<span class="w"> </span>data:
+!<span class="o">[</span>alt<span class="w"> </span>text<span class="o">](</span>image-2.png<span class="o">)</span>
+Maka<span class="w"> </span>kesimpulannya,<span class="w"> </span>objek<span class="w"> </span><span class="sb">`</span>test.jpg<span class="sb">`</span><span class="w"> </span>jauh<span class="w"> </span>lebih<span class="w"> </span>mirip<span class="w"> </span>dengan<span class="w"> </span>**face1**.
+
+---
+
+<span class="c1">## STEP 14 — Threshold</span>
+
+**Kode:**
+<span class="nv">accepted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>nearest_distance<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>computed_threshold
+Threshold<span class="w"> </span>digunakan<span class="w"> </span>untuk<span class="w"> </span>menentukan<span class="w"> </span>apakah<span class="w"> </span>wajah<span class="w"> </span>dikenali<span class="w"> </span>atau<span class="w"> </span>tidak.<span class="w"> </span>Kalau<span class="w"> </span>jaraknya<span class="w"> </span>terlalu<span class="w"> </span>besar,<span class="w"> </span>output<span class="w"> </span>yang<span class="w"> </span>keluar<span class="w"> </span>adalah<span class="w"> </span>UNKNOWN.
+
+Karena<span class="w"> </span>sistem<span class="w"> </span>sadar<span class="w"> </span>dia<span class="w"> </span>tidak<span class="w"> </span>tahu<span class="w"> </span>siapa<span class="w"> </span>orang<span class="w"> </span>itu.<span class="w"> </span>Langkah<span class="w"> </span>langka<span class="w"> </span>dalam<span class="w"> </span>sejarah<span class="w"> </span>teknologi.
+
+---
+
+<span class="c1">## 7. Visualisasi yang Dihasilkan</span>
+
+Program<span class="w"> </span>juga<span class="w"> </span>membuat<span class="w"> </span>beberapa<span class="w"> </span>gambar<span class="w"> </span>analisis:
+
+*<span class="w"> </span>**Mean<span class="w"> </span>Face:**<span class="w"> </span>Rata-rata<span class="w"> </span>dari<span class="w"> </span>semua<span class="w"> </span>wajah<span class="w"> </span>sampel.
+*<span class="w"> </span>**Centered<span class="w"> </span>Face:**<span class="w"> </span>Tampilan<span class="w"> </span>wajah<span class="w"> </span>setelah<span class="w"> </span>dikurangi<span class="w"> </span>komponen<span class="w"> </span>*mean*.
+*<span class="w"> </span>**Eigenface:**<span class="w"> </span>Pola<span class="w"> </span>fitur<span class="w"> </span>utama<span class="w"> </span>wajah<span class="w"> </span>hasil<span class="w"> </span>dekomposisi<span class="w"> </span>SVD.
+*<span class="w"> </span>**Reconstruction:**<span class="w"> </span>Hasil<span class="w"> </span>wajah<span class="w"> </span>yang<span class="w"> </span>disusun<span class="w"> </span>kembali<span class="w"> </span>dari<span class="w"> </span>komponen<span class="w"> </span>*eigenface*.
+*<span class="w"> </span>**Error<span class="w"> </span>Image:**<span class="w"> </span>Selisih<span class="w"> </span>atau<span class="w"> </span>perbedaan<span class="w"> </span>antara<span class="w"> </span>wajah<span class="w"> </span>asli<span class="w"> </span>dengan<span class="w"> </span>hasil<span class="w"> </span>rekonstruksi.
+
+---
+
+<span class="c1">## 8. Penjelasan Fungsi Penting</span>
+
+*<span class="w"> </span>**<span class="sb">`</span>parse_size<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Mengubah<span class="w"> </span>string<span class="w"> </span>input<span class="w"> </span><span class="sb">`</span><span class="s2">&quot;64x64&quot;</span><span class="sb">`</span><span class="w"> </span>menjadi<span class="w"> </span>format<span class="w"> </span>tuple<span class="w"> </span><span class="sb">`</span><span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span><span class="sb">`</span>.
+*<span class="w"> </span>**<span class="sb">`</span>image_paths<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Mencari<span class="w"> </span>dan<span class="w"> </span>mendaftar<span class="w"> </span>semua<span class="w"> </span>file<span class="w"> </span>gambar<span class="w"> </span>di<span class="w"> </span>direktori.
+*<span class="w"> </span>**<span class="sb">`</span>normalize_to_uint8<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Mengubah<span class="w"> </span>nilai<span class="w"> </span>matriks<span class="w"> </span>kembali<span class="w"> </span>agar<span class="w"> </span>bisa<span class="w"> </span>divisualisasikan<span class="w"> </span>menjadi<span class="w"> </span>citra<span class="w"> </span>standar.
+*<span class="w"> </span>**<span class="sb">`</span>matrix_to_image<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Mengonversi<span class="w"> </span>array<span class="w"> </span>matriks<span class="w"> </span>menjadi<span class="w"> </span>objek<span class="w"> </span>gambar<span class="w"> </span>utuh.
+*<span class="w"> </span>**<span class="sb">`</span>save_grid<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Menggabungkan<span class="w"> </span>banyak<span class="w"> </span>gambar<span class="w"> </span>analisis<span class="w"> </span>menjadi<span class="w"> </span>satu<span class="w"> </span>grid<span class="w"> </span>gambar<span class="w"> </span>komposit.
+*<span class="w"> </span>**<span class="sb">`</span>choose_threshold<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Menghitung<span class="w"> </span>batas<span class="w"> </span>toleransi<span class="w"> </span>*threshold*<span class="w"> </span>otomatis<span class="w"> </span>berdasarkan<span class="w"> </span>sebaran<span class="w"> </span>data<span class="w"> </span>*training*.
+*<span class="w"> </span>**<span class="sb">`</span>recognize_with_svd<span class="o">()</span><span class="sb">`</span>**:<span class="w"> </span>Fungsi<span class="w"> </span>inti<span class="w"> </span>seluruh<span class="w"> </span>algoritma,<span class="w"> </span>di<span class="w"> </span>mana<span class="w"> </span>semua<span class="w"> </span>pemrosesan<span class="w"> </span>utama<span class="w"> </span>terjadi<span class="w"> </span>di<span class="w"> </span>sini.
+
+---
+
+<span class="c1">## 9. Rumus Penting yang Dipakai</span>
+
+<span class="c1">### Mean Face</span>
+
+<span class="nv">$$</span><span class="se">\m</span>u<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="se">\t</span>ext<span class="o">{</span>rata-rata<span class="w"> </span>seluruh<span class="w"> </span>wajah<span class="o">}</span><span class="nv">$$</span>
+
+<span class="c1">### Centering</span>
+
+<span class="nv">$$A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>X<span class="w"> </span>-<span class="w"> </span><span class="se">\m</span>u<span class="nv">$$</span>
+
+<span class="c1">### SVD</span>
+
+<span class="nv">$$A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>U<span class="se">\S</span>igma<span class="w"> </span>V^T<span class="nv">$$</span>
+
+<span class="c1">### Proyeksi Eigenface</span>
+
+<span class="nv">$$W</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>U^T<span class="w"> </span>A<span class="nv">$$</span>
+
+<span class="c1">### Euclidean Distance</span>
+
+<span class="nv">$$d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="se">\|</span>z<span class="w"> </span>-<span class="w"> </span>y<span class="se">\|</span><span class="nv">$$</span>
+
+---
+
+<span class="c1">## 10. Output Program</span>
+
+Program<span class="w"> </span>menghasilkan<span class="w"> </span>dua<span class="w"> </span>komponen<span class="w"> </span>keluaran<span class="w"> </span>utama:
+
+*<span class="w"> </span>**File<span class="w"> </span>laporan<span class="w"> </span><span class="o">(</span><span class="sb">`</span>laporan_svd.txt<span class="sb">`</span><span class="o">)</span>:**<span class="w"> </span>Berisi<span class="w"> </span>salinan<span class="w"> </span>matriks,<span class="w"> </span>nilai<span class="w"> </span>singular,<span class="w"> </span>hasil<span class="w"> </span>prediksi,<span class="w"> </span>bobot<span class="w"> </span>jarak,<span class="w"> </span>dan<span class="w"> </span>komponen<span class="w"> </span>eigenface.
+*<span class="w"> </span>**Folder<span class="w"> </span>visualisasi<span class="w"> </span><span class="o">(</span><span class="sb">`</span>hasil_analisis_svd/<span class="sb">`</span><span class="o">)</span>:**<span class="w"> </span>Berisi<span class="w"> </span>berkas<span class="w"> </span>gambar<span class="w"> </span>*mean<span class="w"> </span>face*,<span class="w"> </span>*eigenface*,<span class="w"> </span>grafik<span class="w"> </span>perkembangan<span class="w"> </span>*singular<span class="w"> </span>value*,<span class="w"> </span>hingga<span class="w"> </span>visualisasi<span class="w"> </span>*reconstruction*.
+
+---
+
+<span class="c1">## 11. Kesimpulan Cara Kerja Program</span>
+
+Secara<span class="w"> </span>singkat:
+
+<span class="m">1</span>.<span class="w"> </span>Gambar<span class="w"> </span>diubah<span class="w"> </span>menjadi<span class="w"> </span>angka.
+<span class="m">2</span>.<span class="w"> </span>Angka<span class="w"> </span>diproses<span class="w"> </span>menjadi<span class="w"> </span>matriks.
+<span class="m">3</span>.<span class="w"> </span>SVD<span class="w"> </span>mencari<span class="w"> </span>pola<span class="w"> </span>utama<span class="w"> </span>wajah<span class="w"> </span><span class="o">(</span>*eigenfaces*<span class="o">)</span>.
+<span class="m">4</span>.<span class="w"> </span>Wajah<span class="w"> </span>diproyeksikan<span class="w"> </span>ke<span class="w"> </span>ruang<span class="w"> </span>fitur<span class="w"> </span>rendah.
+<span class="m">5</span>.<span class="w"> </span>Jarak<span class="w"> </span>spasial<span class="w"> </span>dihitung.
+<span class="m">6</span>.<span class="w"> </span>Wajah<span class="w"> </span>terdekat<span class="w"> </span>dipilih<span class="w"> </span>sebagai<span class="w"> </span>hasil<span class="w"> </span>pengenalan.
+
+Program<span class="w"> </span>ini<span class="w"> </span>sebenarnya<span class="w"> </span>adalah<span class="w"> </span>gabungan<span class="w"> </span>dari<span class="w"> </span>pengolahan<span class="w"> </span>citra,<span class="w"> </span>aljabar<span class="w"> </span>linear,<span class="w"> </span>reduksi<span class="w"> </span>dimensi,<span class="w"> </span>dan<span class="w"> </span>klasifikasi<span class="w"> </span>sederhana.<span class="w"> </span>Menariknya,<span class="w"> </span>inti<span class="w"> </span>pengenalan<span class="w"> </span>wajah<span class="w"> </span>di<span class="w"> </span>sini<span class="w"> </span>bukan<span class="w"> </span>AI<span class="w"> </span>modern<span class="w"> </span>berat<span class="w"> </span>miliaran<span class="w"> </span>parameter,<span class="w"> </span>tapi<span class="w"> </span>matematika<span class="w"> </span>klasik<span class="w"> </span>yang<span class="w"> </span>sudah<span class="w"> </span>ada<span class="w"> </span>sejak<span class="w"> </span>lama.<span class="w"> </span>Kadang<span class="w"> </span>solusi<span class="w"> </span>elegan<span class="w"> </span>memang<span class="w"> </span>tidak<span class="w"> </span>perlu<span class="w"> </span>GPU<span class="w"> </span>seharga<span class="w"> </span>motor.
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD\Dokumentasi_Cara_Kerja_Program_Face_Recognition_dengan _SVD"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Dokumentasi Cara Kerja Program Face Recognition dengan SVD / Eigenfaces</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-program">1. Tujuan Program</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#library-yang-harus-diinstall">2. Library yang Harus Diinstall</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-python">Install Python</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
