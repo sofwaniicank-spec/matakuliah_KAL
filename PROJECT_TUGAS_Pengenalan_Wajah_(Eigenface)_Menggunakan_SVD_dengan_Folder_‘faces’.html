@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; My sample book</title>
+    <title>PROJECT TUGAS: Pengenalan Wajah (Eigenface) Menggunakan SVD dengan Folder ‘faces’ &#8212; My sample book</title>
   
   
   
@@ -235,6 +235,12 @@
 
 
 
+<li class="toctree-l1"><a class="reference internal" href="Eigenfaces.html">Dokumentasi Cara Kerja Program Face Recognition dengan SVD / Eigenfaces</a></li>
+
+
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="materi10.html">materi 10: Kompresi dan Rekonstruksi Citra Menggunakan Perkalian Matriks SVD</a></li>
 
 </ul>
@@ -422,7 +428,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>PROJECT TUGAS: Pengenalan Wajah (Eigenface) Menggunakan SVD dengan Folder ‘faces’</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -431,9 +437,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-setup-deteksi-lingkungan-colab-vs-lokal">1. Import Library &amp; Setup Deteksi Lingkungan (Colab vs Lokal)</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -444,7 +450,206 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-tugas-pengenalan-wajah-eigenface-menggunakan-svd-dengan-folder-faces">
+<h1>PROJECT TUGAS: Pengenalan Wajah (Eigenface) Menggunakan SVD dengan Folder ‘faces’<a class="headerlink" href="#project-tugas-pengenalan-wajah-eigenface-menggunakan-svd-dengan-folder-faces" title="Link to this heading">#</a></h1>
+<p>Notebook ini menggunakan data citra riil dari folder <code class="docutils literal notranslate"><span class="pre">faces</span></code> (berisi Arnold Schwarzenegger, Sylvester Stallone, dan Elizabeth Taylor).</p>
+<p>Program dirancang cerdas agar mendukung <em>dual-mode</em> (dapat berjalan lokal di VS Code Anda maupun di Google Colab cloud)!</p>
+<hr class="docutils" />
+<section id="import-library-setup-deteksi-lingkungan-colab-vs-lokal">
+<h2>1. Import Library &amp; Setup Deteksi Lingkungan (Colab vs Lokal)<a class="headerlink" href="#import-library-setup-deteksi-lingkungan-colab-vs-lokal" title="Link to this heading">#</a></h2>
+<p>Bagian ini berfungsi untuk mendeteksi lingkungan kerja tempat notebook dieksekusi, apakah berada di <em>cloud</em> (Google Colab) atau di komputer/PC lokal.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cv2</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># 1. Mendeteksi Lingkungan Kerja (Google Colab vs PC Lokal)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">google.colab</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">IMG_SIZE</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mendeteksi Lingkungan: GOOGLE COLAB&quot;</span><span class="p">)</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+    
+    <span class="c1"># Jika folder faces belum ada di Colab, minta upload zip</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;faces&quot;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Silakan UPLOAD file zip &#39;faces.zip&#39; Anda!&quot;</span><span class="p">)</span>
+        <span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+        <span class="n">zip_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="c1"># Ekstrak zip ke direktori Colab</span>
+        <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+            <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="s2">&quot;/content/&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset berhasil diekstrak di Google Colab!&quot;</span><span class="p">)</span>
+    <span class="n">dataset_path</span> <span class="o">=</span> <span class="s2">&quot;/content/faces&quot;</span>
+    
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mendeteksi Lingkungan: LOKAL (VS Code / PC)&quot;</span><span class="p">)</span>
+    <span class="n">dataset_path</span> <span class="o">=</span> <span class="s2">&quot;faces&quot;</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Folder &#39;</span><span class="si">{</span><span class="n">dataset_path</span><span class="si">}</span><span class="s2">&#39; tidak ditemukan! Letakkan folder &#39;faces&#39; di workspace Anda.&quot;</span><span class="p">)</span>
+       
+ <span class="err">!</span><span class="p">[</span><span class="n">alt</span> <span class="n">text</span><span class="p">](</span><span class="n">image</span><span class="o">-</span><span class="mf">21.</span><span class="n">png</span><span class="p">)</span>
+
+ <span class="c1">## 4. Normalisasi &amp; Komputasi SVD</span>
+
+<span class="n">Proses</span> <span class="n">ini</span> <span class="n">bertujuan</span> <span class="n">untuk</span> <span class="n">menghitung</span> <span class="n">rata</span><span class="o">-</span><span class="n">rata</span> <span class="n">wajah</span> <span class="p">(</span><span class="o">*</span><span class="n">Mean</span> <span class="n">Face</span><span class="o">*</span><span class="p">),</span> <span class="n">melakukan</span> <span class="n">proses</span> <span class="o">*</span><span class="n">centering</span><span class="o">*</span> <span class="p">(</span><span class="n">pengurangan</span> <span class="n">rata</span><span class="o">-</span><span class="n">rata</span><span class="p">)</span> <span class="n">untuk</span> <span class="n">normalisasi</span> <span class="n">data</span> <span class="n">citra</span> <span class="n">latih</span><span class="p">,</span> <span class="n">serta</span> <span class="n">melakukan</span> <span class="n">dekomposisi</span> <span class="n">matriks</span> <span class="n">menggunakan</span> <span class="o">*</span><span class="n">Singular</span> <span class="n">Value</span> <span class="n">Decomposition</span><span class="o">*</span> <span class="p">(</span><span class="n">SVD</span><span class="p">)</span><span class="o">.</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="c1"># 1. Hitung Rata-rata Wajah (Mean Face)</span>
+<span class="n">mean_face</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 2. Normalisasi Data (Mean Subtraction)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">X</span> <span class="o">-</span> <span class="n">mean_face</span>
+
+<span class="c1"># 3. Dekomposisi SVD</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">VT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===== HASIL KOMPUTASI DEKOMPOSISI SVD =====&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran U (Bobot Training)  :&quot;</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran Sigma (Singular)    :&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran VT (Eigenfaces)     :&quot;</span><span class="p">,</span> <span class="n">VT</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===== 5 SINGULAR VALUES TERBESAR =====&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">))):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Singular Value </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="o">=====</span> <span class="n">HASIL</span> <span class="n">KOMPUTASI</span> <span class="n">DEKOMPOSISI</span> <span class="n">SVD</span> <span class="o">=====</span>
+<span class="n">Ukuran</span> <span class="n">U</span> <span class="p">(</span><span class="n">Bobot</span> <span class="n">Training</span><span class="p">)</span>  <span class="p">:</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">Ukuran</span> <span class="n">Sigma</span> <span class="p">(</span><span class="n">Singular</span><span class="p">)</span>    <span class="p">:</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">Ukuran</span> <span class="n">VT</span> <span class="p">(</span><span class="n">Eigenfaces</span><span class="p">)</span>     <span class="p">:</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+
+<span class="o">=====</span> <span class="mi">5</span> <span class="n">SINGULAR</span> <span class="n">VALUES</span> <span class="n">TERBESAR</span> <span class="o">=====</span>
+<span class="n">Singular</span> <span class="n">Value</span> <span class="mi">1</span> <span class="o">=</span> <span class="mf">28454.9492</span>
+<span class="n">Singular</span> <span class="n">Value</span> <span class="mi">2</span> <span class="o">=</span> <span class="mf">18412.0547</span>
+<span class="n">Singular</span> <span class="n">Value</span> <span class="mi">3</span> <span class="o">=</span> <span class="mf">14123.0381</span>
+<span class="n">Singular</span> <span class="n">Value</span> <span class="mi">4</span> <span class="o">=</span> <span class="mf">13157.9961</span>
+<span class="n">Singular</span> <span class="n">Value</span> <span class="mi">5</span> <span class="o">=</span> <span class="mf">10911.9785</span>
+
+<span class="c1">### 5. Visualisasi Wajah Eigenface (Ghostly Faces)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">VT</span><span class="p">):</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">VT</span><span class="p">)</span>
+
+<span class="n">eigenfaces</span> <span class="o">=</span> <span class="n">VT</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">face</span> <span class="o">=</span> <span class="n">eigenfaces</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">IMG_SIZE</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">)</span>  <span class="c1"># &#39;coolwarm&#39; untuk visualisasi premium</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Eigenface </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;VISUALISASI EIGENFACES HASIL DEKOMPOSISI SVD&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="err">!</span><span class="p">[</span><span class="n">alt</span> <span class="n">text</span><span class="p">](</span><span class="n">image</span><span class="o">-</span><span class="mf">22.</span><span class="n">png</span><span class="p">)</span>
+<span class="c1">## 6. Proyeksi Training Set &amp; Pengujian Wajah Baru</span>
+
+<span class="n">Pada</span> <span class="n">tahap</span> <span class="n">akhir</span> <span class="n">ini</span><span class="p">,</span> <span class="n">seluruh</span> <span class="n">data</span> <span class="n">citra</span> <span class="n">latih</span> <span class="p">(</span><span class="o">*</span><span class="n">training</span> <span class="nb">set</span><span class="o">*</span><span class="p">)</span> <span class="n">serta</span> <span class="n">gambar</span> <span class="n">wajah</span> <span class="n">baru</span> <span class="p">(</span><span class="o">*</span><span class="n">test</span> <span class="n">image</span><span class="o">*</span><span class="p">)</span> <span class="n">diproyeksikan</span> <span class="n">ke</span> <span class="n">dalam</span> <span class="n">ruang</span> <span class="n">fitur</span> <span class="o">*</span><span class="n">Eigenspace</span><span class="o">*.</span> <span class="n">Selanjutnya</span><span class="p">,</span> <span class="n">sistem</span> <span class="n">menghitung</span> <span class="n">jarak</span> <span class="n">kedekatan</span> <span class="n">spasial</span> <span class="n">menggunakan</span> <span class="o">*</span><span class="n">Euclidean</span> <span class="n">Distance</span><span class="o">*</span> <span class="n">untuk</span> <span class="n">menentukan</span> <span class="n">prediksi</span> <span class="n">identitas</span> <span class="n">wajah</span> <span class="n">yang</span> <span class="n">paling</span> <span class="n">cocok</span><span class="o">.</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="c1"># 1. Proyeksi training set ke Eigenspace</span>
+<span class="n">projected_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">eigenfaces</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># 2. Mengambil gambar uji berdasarkan lingkungan kerja</span>
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Silakan UPLOAD gambar wajah uji Anda (misal &#39;teststallone1.jpg&#39; atau &#39;testtaylor1.jpg&#39;)!&quot;</span><span class="p">)</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+    <span class="n">uploaded_test</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+    <span class="n">test_file_path</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uploaded_test</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># Mode Lokal: Cari gambar uji berawalan &#39;test&#39; di folder &#39;faces&#39;</span>
+    <span class="c1"># Secara default, mari kita gunakan &#39;testterminator1.jpg&#39; (uji Arnold)</span>
+    <span class="n">test_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="s2">&quot;testterminator1.jpg&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">test_file_path</span><span class="p">):</span>
+        <span class="n">test_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">test_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dataset_path</span><span class="p">,</span> <span class="n">test_files</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Menggunakan Wajah Uji Lokal: </span><span class="si">{</span><span class="n">test_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load gambar uji</span>
+<span class="n">test_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">test_file_path</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_GRAYSCALE</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">test_img</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gagal memuat gambar uji dari: </span><span class="si">{</span><span class="n">test_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">test_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">test_img</span><span class="p">,</span> <span class="p">(</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">IMG_SIZE</span><span class="p">))</span>
+
+<span class="c1"># 3. Normalisasi &amp; Proyeksi Test Image</span>
+<span class="n">test_vector</span> <span class="o">=</span> <span class="n">test_img</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">test_normalized</span> <span class="o">=</span> <span class="n">test_vector</span> <span class="o">-</span> <span class="n">mean_face</span>
+<span class="n">projected_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">test_normalized</span><span class="p">,</span> <span class="n">eigenfaces</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># 4. Hitung Jarak Euclidean ke seluruh training set menggunakan NumPy</span>
+<span class="n">distances</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">projected_train</span> <span class="o">-</span> <span class="n">projected_test</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 5. Klasifikasi: Ambil yang terdekat</span>
+<span class="n">best_match_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span>
+<span class="n">hasil</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">best_match_idx</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">===== DETIL JARAK EUCLIDEAN TERDEKAT =====&quot;</span><span class="p">)</span>
+<span class="n">unique_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">unique_names</span><span class="p">:</span>
+    <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">name</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">min_dist_name</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">distances</span><span class="p">[</span><span class="n">idxs</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jarak Terdekat ke </span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">min_dist_name</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">====================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     HASIL PENGENALAN WAJAH SVD&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;====================================&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gambar Uji        :&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">test_file_path</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Prediksi Identitas:&quot;</span><span class="p">,</span> <span class="n">hasil</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jarak Terdekat    :&quot;</span><span class="p">,</span> <span class="n">distances</span><span class="p">[</span><span class="n">best_match_idx</span><span class="p">])</span>
+
+<span class="c1"># 6. Load Wajah Hasil Match Terdekat untuk Visualisasi</span>
+<span class="n">matched_img_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">hasil</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">matched_img</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">matched_img_idx</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">IMG_SIZE</span><span class="p">,</span> <span class="n">IMG_SIZE</span><span class="p">)</span>
+
+<span class="c1"># 7. Tampilkan Perbandingan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">test_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wajah Uji: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">test_file_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">matched_img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cocok Terdekat: </span><span class="si">{</span><span class="n">hasil</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;HASIL AKHIR PENGENALAN WAJAH SISTEM SVD&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">Menggunakan</span> <span class="n">Wajah</span> <span class="n">Uji</span> <span class="n">Lokal</span><span class="p">:</span> <span class="n">faces</span>\<span class="n">testterminator1</span><span class="o">.</span><span class="n">jpg</span>
+
+<span class="o">=====</span> <span class="n">DETIL</span> <span class="n">JARAK</span> <span class="n">EUCLIDEAN</span> <span class="n">TERDEKAT</span> <span class="o">=====</span>
+<span class="n">Jarak</span> <span class="n">Terdekat</span> <span class="n">ke</span> <span class="n">ARNOLD</span> <span class="o">=</span> <span class="mf">42.2411</span>
+<span class="n">Jarak</span> <span class="n">Terdekat</span> <span class="n">ke</span> <span class="n">ARNOLD</span> <span class="o">-</span> <span class="n">COPY</span> <span class="o">=</span> <span class="mf">6869.3940</span>
+<span class="n">Jarak</span> <span class="n">Terdekat</span> <span class="n">ke</span> <span class="n">STALLONE</span> <span class="o">=</span> <span class="mf">4017.2571</span>
+<span class="n">Jarak</span> <span class="n">Terdekat</span> <span class="n">ke</span> <span class="n">TAYLOR</span> <span class="o">=</span> <span class="mf">4026.4136</span>
+
+<span class="o">====================================</span>
+     <span class="n">HASIL</span> <span class="n">PENGENALAN</span> <span class="n">WAJAH</span> <span class="n">SVD</span>
+<span class="o">====================================</span>
+<span class="n">Gambar</span> <span class="n">Uji</span>        <span class="p">:</span> <span class="n">testterminator1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Prediksi</span> <span class="n">Identitas</span><span class="p">:</span> <span class="n">ARNOLD</span>
+<span class="n">Jarak</span> <span class="n">Terdekat</span>    <span class="p">:</span> <span class="mf">42.24114</span>
+<span class="err">!</span><span class="p">[</span><span class="n">alt</span> <span class="n">text</span><span class="p">](</span><span class="n">image</span><span class="o">-</span><span class="mf">23.</span><span class="n">png</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -490,9 +695,9 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library-setup-deteksi-lingkungan-colab-vs-lokal">1. Import Library &amp; Setup Deteksi Lingkungan (Colab vs Lokal)</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
